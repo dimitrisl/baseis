@@ -35,9 +35,22 @@ public class Joins {
 		
 	}
 
-	public ArrayList<String> Nlj (String f1,String f2,String a1,String a2)
+	public ArrayList<String> Nlj (int[][] arxeio1,int[][] arxeio2 , int a1,int a2)
 		{
-		ArrayList<String> result = new ArrayList<String>();		
+		ArrayList<String> result = new ArrayList<String>();
+		
+		for (int i=0; i < arxeio1.length; i++)
+		{
+			for (int j=0; j < arxeio2.length; j++)
+			{
+				if (arxeio1[i][a1] == arxeio2[j][a2])
+					{
+						
+					}
+			}
+		}
+			
+			
 		return result;
 		}
 
