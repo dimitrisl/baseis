@@ -20,15 +20,28 @@ public class joinalgs {
 7			-t <temporary_dir_path>: a directory to use for reading/writing temporary files
 8			-o <output_file_path>: the file to store the result of the join 
 		 * */		
-//		String f1 = args[1]; // first csv
-//		String a1 = args[3];
-//		String f2 = args[5]; // second csv
-//		String a2 = args[7];
-//		String j = args[9];
-//		String m = args[11];
-//		String t = args[13];
-//		String o = args[15];
+		String f1 = args[1]; // first csv
+		int a1 = Integer.parseInt(args[3]);
+		String f2 = args[5]; // second csv
+		int a2 = Integer.parseInt(args[7]);
+		String j = args[9];
+		int m = Integer.parseInt(args[11]);
+		String t = args[13];
+		String o = args[15];
 		
+		
+		if (j=="NLJ")
+		{
+			try {
+				Nlj(f1,f2,m,a1,a2);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else if (j=="MSJ")
+		{
+			
+		}
 
 		
 	}
@@ -42,7 +55,7 @@ public class joinalgs {
 		return decision;
 	}
 	
-	public void Nlj(String loc1,String loc2,int memorysize, int attribute1,int attribute2) throws IOException
+	public static void Nlj(String loc1,String loc2,int memorysize, int attribute1,int attribute2) throws IOException
 	//that this buffer is splitted.
 	{
 	String file1line = "";
@@ -62,24 +75,23 @@ public class joinalgs {
 	// by convention in this implementation we get that the first file will be the smallest of the two (this will be decided by another method)
 	
 		
-		while ((file1line = fr.readLine()) != null)
+		while ((file1line = fr.readLine()) != null || (((file2line = sr.readLine())!= null)))
 		{
-			String[] temp1 = file1line.split(",");
-			while (((file2line = sr.readLine()) != null ))
+			if (((file2line = sr.readLine()) == null))
 			{
-				String[] temp2 = file2line.split(",");
-				
-				if (temp1[attribute1].equals(temp2[attribute2]))
-						{
-							System.out.println("ginetai diaxwrismos");
-						}
-//				for (int i = 0 ;i <= (numberoflines1/(m-1)); i = i+1 )
-//					{
-//					
-//					}			
+				sr = new BufferedReader(new FileReader(csvFile2));
 			}
-			sr = new BufferedReader(new FileReader(csvFile2));
-			sr.readLine();
+			
+			for (int i=0;i<(numberoflines1)/m -1;i++) //milame gia to poses fores xwraei to paketo M genikotera
+			{
+				//readFile1 and put it in memory
+				for (int j = 0;j<= numberoflines2;j++)
+				{
+				
+				//readFile2 lines put in memory
+				//compare
+				}
+			}
 		}
 	}
 }
