@@ -1,9 +1,10 @@
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
-import javax.swing.text.AbstractDocument.BranchElement;
 
 public class joinalgs {
 	
@@ -35,7 +36,6 @@ public class joinalgs {
 			try {
 				Nlj(f1,f2,m,a1,a2);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}else if (j=="MSJ")
@@ -49,11 +49,38 @@ public class joinalgs {
 	public int[] compare(int File1,int File2,int memsize)
 	{
 		int decision[] = new int[3];
-		//compares the two files decides the fraction of the memsize that will be used
 		
 		
 		return decision;
 	}
+
+	public static void Writethis(String text)
+	{
+
+		try{
+
+	        //Specify the file name and path here
+	    	File file =new File("./output.txt");
+
+	    	/* This logic is to create the file if the
+	    	 * file is not already present
+	    	 */
+	    	if(!file.exists()){
+	    	   file.createNewFile();
+	    	}
+	    	//Here true is to append the content to file
+	    	FileWriter fw = new FileWriter(file,true);
+	    	//BufferedWriter writer give better performance
+	    	BufferedWriter bw = new BufferedWriter(fw);
+	    	bw.write(text);
+	    	//Closing BufferedWriter Stream
+	    	bw.close();
+	      }catch(IOException ioe){
+	         System.out.println("Exception occurred:");
+	    	 ioe.printStackTrace();
+	       }
+	   }
+		
 	
 	public static void Nlj(String loc1,String loc2,int memorysize, int attribute1,int attribute2) throws IOException
 	//that this buffer is splitted.
@@ -74,22 +101,24 @@ public class joinalgs {
 	// we got number of lines for both files to be joined
 	// by convention in this implementation we get that the first file will be the smallest of the two (this will be decided by another method)
 	
-		
 		while ((file1line = fr.readLine()) != null || (((file2line = sr.readLine())!= null)))
 		{
 			if (((file2line = sr.readLine()) == null))
 			{
 				sr = new BufferedReader(new FileReader(csvFile2));
+				//go back to the beggining
 			}
 			
-			for (int i=0;i<(numberoflines1)/m -1;i++) //milame gia to poses fores xwraei to paketo M genikotera
+			for (int i=0;i<(numberoflines1)/m -1;i++) //poses fores xwraei to M ston pinaka me tis ligoteres eggrafes
 			{
 				//readFile1 and put it in memory
+				
 				for (int j = 0;j<= numberoflines2;j++)
 				{
 				
 				//readFile2 lines put in memory
 				//compare
+				Writethis(file1line);
 				}
 			}
 		}
