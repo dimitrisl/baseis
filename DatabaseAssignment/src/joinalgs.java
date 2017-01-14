@@ -1,5 +1,4 @@
-
-
+import java.io.IOException;
 
 public class joinalgs {
 	
@@ -16,21 +15,27 @@ public class joinalgs {
 7			-t <temporary_dir_path>: a directory to use for reading/writing temporary files
 8			-o <output_file_path>: the file to store the result of the join 
 		 * */		
-		String f1 = args[1]; // first csv
+		/*String f1 = args[1]; // first csv
 		int a1 = Integer.parseInt(args[3]);
 		String f2 = args[5]; // second csv
 		int a2 = Integer.parseInt(args[7]);
 		String j = args[9];
 		int m = Integer.parseInt(args[11]);
 		String t = args[13];
-		String o = args[15];
+		String o = args[15];*/
 		
-		
+		String j="NLJ";
 		if (j=="NLJ")
 		{
 			// filepath1,filepath2,memory size,collumnf1,collumnf2
 			//create decision method to choose case for nlj
 			//Nonenlj fits -->joinstart
+			try {
+				NoneNlj.joinstart("A.csv", "B.csv", 100, 0, 1);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			//Onenlj fits -->joinstart
 			//both fit Bothnlj-->joinstart
 		}else if (j=="MSJ")

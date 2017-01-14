@@ -32,17 +32,17 @@ public class NoneNlj {
 			for (int i=0;i<numOfLines1/(memsize-1);i++) //poses fores xwraei to M ston pinaka me tis ligoteres eggrafes
 			{
 				//readFile1 and put it in memory
-				for(int k=0;k<=memsize-1;k++){
+				for(int k=0;k<memsize-1;k++){
 					lines1=fr.readLine();
-					memory[k]=Integer.parseInt(lines1.split(",")[attributesF1-1]);				
+					memory[k]=Integer.parseInt(lines1.split(",")[attributesF1]);				
 				}
 				
 				for (int j=0;j<=numOfLines2;j++)
 				{
 					lines2=sr.readLine();
-					memory[memsize]=Integer.parseInt(lines2.split(",")[attributesF2-1]);//change in every iteration only the last record in the memory
+					memory[memsize-1]=Integer.parseInt(lines2.split(",")[attributesF2]);//change in every iteration only the last record in the memory
 					for(int l=0;l<=memsize-1;l++){
-						if(memory[l]==memory[memsize]){
+						if(memory[l]==memory[memsize-1]){
 							ReadingWritingFile.Writethis(lines1);
 						}
 					}
