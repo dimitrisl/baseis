@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public class ReadingWritingFile {
 	
-	public int readFirstLineofFile(String file){
+	public static int readFirstLineofFile(String file){
 	    int numOflines=0;
 	    
 	    try (BufferedReader br = new BufferedReader(new FileReader(file))) {
