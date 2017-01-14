@@ -25,8 +25,7 @@ public class joinalgs {
 		int a1 = Integer.parseInt(args[3]);
 		String f2 = args[5]; // second csv
 		int a2 = Integer.parseInt(args[7]);
-		String j = args[9];
-		int m = Integer.parseInt(args[11]);
+		String j = args[9];		int m = Integer.parseInt(args[11]);
 		String t = args[13];
 		String o = args[15];
 		
@@ -49,8 +48,7 @@ public class joinalgs {
 	public int[] compare(int File1,int File2,int memsize)
 	{
 		int decision[] = new int[3];
-		
-		
+
 		return decision;
 	}
 
@@ -84,6 +82,8 @@ public class joinalgs {
 	
 	public static void Nlj(String loc1,String loc2,int memorysize, int attribute1,int attribute2) throws IOException
 	//that this buffer is splitted.
+	// this implementation suggests that the first file is smaller than the second
+	//and that the first file is > than the memory
 	{
 	String file1line = "";
 	String file2line = "";
@@ -118,7 +118,7 @@ public class joinalgs {
 				
 				//readFile2 lines put in memory
 				//compare
-				Writethis(file1line);
+				Writethis(file1line+file2line);
 				}
 			}
 		}
