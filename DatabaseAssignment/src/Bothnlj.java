@@ -29,6 +29,7 @@ public class Bothnlj {
 		while(((file1line = fr.readLine())!=null))	
 		{
 			int line1 = Integer.parseInt(file1line.split(",")[cattribute1]);
+			System.out.println(file1line+"\n");
 			while (((file2line = sr.readLine())!=null))
 			{
 				int line2 = Integer.parseInt(file2line.split(",")[cattribute2]);
@@ -43,7 +44,6 @@ public class Bothnlj {
 							 continue;
 						 }else
 						 {
-							 System.out.println(concatenated_string);
 							 concatenated_string =concatenated_string + file1line.split(",")[counter] + ",";
 						 }
 					 }
@@ -53,7 +53,6 @@ public class Bothnlj {
 			}
 			sr = new BufferedReader(new FileReader(file2));
 			sr.readLine();
-
 		}
 	
 	fr.close();
