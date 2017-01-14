@@ -6,9 +6,8 @@ public class NoneNlj {
 		
 		int numOfLines1;
 		int numOfLines2;
-		ReadingWritingFile r=new ReadingWritingFile();
-		numOfLines1=r.readFirstLineofFile(filepath1);
-		numOfLines2=r.readFirstLineofFile(filepath2);
+		numOfLines1=ReadingWritingFile.readFirstLineofFile(filepath1);
+		numOfLines2=ReadingWritingFile.readFirstLineofFile(filepath2);
 		
 		while ((numOfLines1 = fr.readLine()) != null || (((numOfLines2 = sr.readLine())!= null)))
 		{
