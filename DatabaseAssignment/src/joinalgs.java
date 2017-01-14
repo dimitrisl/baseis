@@ -25,29 +25,26 @@ public class joinalgs {
 		int a1 = Integer.parseInt(args[3]);
 		String f2 = args[5]; // second csv
 		int a2 = Integer.parseInt(args[7]);
-		String j = args[9];		int m = Integer.parseInt(args[11]);
+		String j = args[9];
+		int m = Integer.parseInt(args[11]);
 		String t = args[13];
 		String o = args[15];
 		
 		
 		if (j=="NLJ")
 		{
-			try {
-				Nlj(f1,f2,m,a1,a2);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			//create decision method to choose case for nlj
 		}else if (j=="MSJ")
 		{
-			
+			//create decision method to choose case for smj
 		}
 
 		
 	}
 	
-	public int[] compare(int File1,int File2,int memsize)
+	public int decision(int File1,int File2,int memsize)
 	{
-		int decision[] = new int[3];
+		int decision = 0;
 
 		return decision;
 	}
@@ -103,15 +100,21 @@ public class joinalgs {
 	
 		while ((file1line = fr.readLine()) != null || (((file2line = sr.readLine())!= null)))
 		{
-			if (((file2line = sr.readLine()) == null))
-			{
-				sr = new BufferedReader(new FileReader(csvFile2));
-				//go back to the beggining
-			}
-			
+
 			for (int i=0;i<(numberoflines1)/m -1;i++) //poses fores xwraei to M ston pinaka me tis ligoteres eggrafes
 			{
 				//readFile1 and put it in memory
+				
+				for (int n = 0 ;n<m-1;n++)
+				{
+					
+				}
+				
+				if (((file2line = sr.readLine()) == null))
+				{
+					sr = new BufferedReader(new FileReader(csvFile2));
+					//go back to the beggining
+				}
 				
 				for (int j = 0;j<= numberoflines2;j++)
 				{
