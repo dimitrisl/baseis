@@ -33,7 +33,11 @@ public class joinalgs {
 		
 		if (j=="NLJ")
 		{
+			// filepath1,filepath2,memory size,collumnf1,collumnf2
 			//create decision method to choose case for nlj
+			//Nonenlj fits -->joinstart
+			//Onenlj fits -->joinstart
+			//both fit Bothnlj-->joinstart
 		}else if (j=="MSJ")
 		{
 			//create decision method to choose case for smj
@@ -42,88 +46,11 @@ public class joinalgs {
 		
 	}
 	
-	public int decision(int File1,int File2,int memsize)
+	public int decidenlj(int File1,int File2,int memsize)
 	{
 		int decision = 0;
 
-		return decision;
+		return decision; //poia apo tis 3 periptwseis nlj
 	}
 
-	public static void Writethis(String text)
-	{
-
-		try{
-
-	        //Specify the file name and path here
-	    	File file =new File("./output.txt");
-
-	    	/* This logic is to create the file if the
-	    	 * file is not already present
-	    	 */
-	    	if(!file.exists()){
-	    	   file.createNewFile();
-	    	}
-	    	//Here true is to append the content to file
-	    	FileWriter fw = new FileWriter(file,true);
-	    	//BufferedWriter writer give better performance
-	    	BufferedWriter bw = new BufferedWriter(fw);
-	    	bw.write(text);
-	    	//Closing BufferedWriter Stream
-	    	bw.close();
-	      }catch(IOException ioe){
-	         System.out.println("Exception occurred:");
-	    	 ioe.printStackTrace();
-	       }
-	   }
-		
-	
-	public static void Nlj(String loc1,String loc2,int memorysize, int attribute1,int attribute2) throws IOException
-	//that this buffer is splitted.
-	// this implementation suggests that the first file is smaller than the second
-	//and that the first file is > than the memory
-	{
-	String file1line = "";
-	String file2line = "";
-	int numberoflines1 = 0;
-	int numberoflines2 = 0;
-	String csvFile1 = loc1;//locations of both files
-	String csvFile2 = loc2;
-	int m = memorysize; //size of the memory.
-	
-	BufferedReader fr = new BufferedReader(new FileReader(csvFile1));
-	BufferedReader sr = new BufferedReader(new FileReader(csvFile2));
-	
-	numberoflines1 = Integer.parseInt(fr.readLine());
-	numberoflines2 = Integer.parseInt(sr.readLine());
-	// we got number of lines for both files to be joined
-	// by convention in this implementation we get that the first file will be the smallest of the two (this will be decided by another method)
-	
-		while ((file1line = fr.readLine()) != null || (((file2line = sr.readLine())!= null)))
-		{
-
-			for (int i=0;i<(numberoflines1)/m -1;i++) //poses fores xwraei to M ston pinaka me tis ligoteres eggrafes
-			{
-				//readFile1 and put it in memory
-				
-				for (int n = 0 ;n<m-1;n++)
-				{
-					
-				}
-				
-				if (((file2line = sr.readLine()) == null))
-				{
-					sr = new BufferedReader(new FileReader(csvFile2));
-					//go back to the beggining
-				}
-				
-				for (int j = 0;j<= numberoflines2;j++)
-				{
-				
-				//readFile2 lines put in memory
-				//compare
-				Writethis(file1line+file2line);
-				}
-			}
-		}
-	}
 }
