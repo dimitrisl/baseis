@@ -1,26 +1,29 @@
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 
 public class Bothnlj {
 	
-	String file1;
-	String file2;
-	int memory;
-	int collumn1;
-	int collumn2;
 	
-	public Bothnlj(String f1,String f2,int m,int collumn1,int collumn2)//filepath1,filepath2,memory size,collumnf1,collumnf2
-	{
-		file1 = f1;
-		file2 = f2;
-		memory = m;
-		this.collumn1 = collumn1;
-		this.collumn2 = collumn2;
-	}
-	
-	public void joinstart()
+	public static void joinstart(String file1,String file2,int m,int cattribute1,int cattribute2)//filepath1,filepath2,memory size,collumnf1,collumnf2
 	{
 		
 		int numberoflines1 = ReadingWritingFile.readFirstLineofFile(file1);
 		int numberoflines2 = ReadingWritingFile.readFirstLineofFile(file2);
+
+		try {
+			BufferedReader fr = new BufferedReader(new FileReader(file1));
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			BufferedReader sr = new BufferedReader(new FileReader(file2));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 }
 
