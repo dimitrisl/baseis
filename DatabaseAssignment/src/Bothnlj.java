@@ -10,7 +10,6 @@ public class Bothnlj {
 
 		int numberoflines1 = ReadingWritingFile.readFirstLineofFile(file1);
 		int numberoflines2 = ReadingWritingFile.readFirstLineofFile(file2);
-		String temp = "";
 		if(numberoflines1>=numberoflines2){//put the file with less records in the outter loop
 			swapStrings(file1,file2);
 		}
@@ -47,6 +46,9 @@ public class Bothnlj {
 			}
 			sr = new BufferedReader(new FileReader(file1));
 		}
+	
+	fr.close();
+	sr.close();
 	}
 	
 	public static void swapStrings(String a,String b){
