@@ -6,14 +6,13 @@ import java.io.IOException;
 public class Onenlj {
 	public static void main(String[] args) {
 		
-		String f1="test1.csv";
-		String f2="test2.csv";
-		int m=8;
+		String f1="A.csv";
+		String f2="B.csv";
+		int m=200;
 		int a1=2;
 		int a2=2;
-		
 				try {
-					Onenlj.joinstart(f1,f2,m,a1,a2);
+					joinstart(f1,f2,m,a1,a2);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -29,62 +28,38 @@ public class Onenlj {
 		String lines1 = "";
 		String lines2 = "";
 		int []mem = new int[memsize];
+		
 
 		if(numberoflines1>=numberoflines2){//put the file with less records in the outer loop
 			swapIntegers(numberoflines1,numberoflines2);
 			swapStrings(file1,file2);
 			swapIntegers(attribute1,attribute2);
-		}
+		
 		BufferedReader fr=new BufferedReader(new FileReader(file1));
 		BufferedReader sr=new BufferedReader(new FileReader(file2));
-		//fr.readLine();
-		//sr.readLine();
+		fr.readLine();
 		
-		if (numberoflines1==memsize-1){
-		while ((lines1 = fr.readLine()) != null || (((lines2 = sr.readLine())!= null)))
-		{
-			for(int k=0;k<=memsize-1;k++){//readFile1 and put it in memory
+			//readFile1 and put it in memory
+			for(int k=0; k<numberoflines1; k++){
+				
 				lines1=fr.readLine();
-				mem[k]=Integer.parseInt(lines1.split(",")[attribute1-1]);
-				System.out.println(mem[k]);
+				mem[k]=Integer.parseInt(lines1.split(",")[attribute1]);
 			}
-			for (int i=0;i<(memsize-1);i++) //
-			{	
-				for (int j=0;j<=numberoflines2;j++)
-				{
-					lines2=sr.readLine();
-					mem[memsize-1]=Integer.parseInt(lines2.split(",")[attribute2-1]);//change in every iteration only the last record in the memory
-						if(mem[i]==mem[memsize-1]){
-							//ReadingWritingFile.Writethis(lines1);
-							System.out.println(lines1+" "+lines2);
-					}
-				}
-				
-				if (((lines2 = sr.readLine()) == null))
-				{
-					sr = new BufferedReader(new FileReader(file2));
-					//go back to the beginning
-				}
-				
-			}
-		  }
-		
-		}else if(numberoflines1<memsize-1){
+				//restart reading file from the beginning
+				fr = new BufferedReader(new FileReader(file1));
+				fr.readLine();
+				sr.readLine();
 			int n= memsize-numberoflines1;
-			while ((lines1 = fr.readLine()) != null || (((lines2 = sr.readLine())!= null)))
+			while ((lines1 = fr.readLine()) != null)
 			{
-				for(int k=0;k<=memsize-1;k++){//readFile1 and put it in memory
-					lines1=fr.readLine();
-					mem[k]=Integer.parseInt(lines1.split(",")[attribute1-1]);				
-				}
-				for (int i=0;i<(memsize-1);i++) //
+				for (int i=0;i<=numberoflines1;i++) 
 				{	
 					for (int j=0;j<=numberoflines2;j=j+n)
 					{
 						for (int l=0;l<n;l++){
 						lines2=sr.readLine();
-						mem[memsize-1]=Integer.parseInt(lines2.split(",")[attribute2-1]);//change in every iteration only the last record in the memory
-							if(mem[i]==mem[memsize-1]){
+						mem[memsize-2]=Integer.parseInt(lines2.split(",")[attribute2]);//change in every iteration only the last record in the memory
+							if(mem[i]==mem[memsize-2]){
 								//ReadingWritingFile.Writethis(lines1);
 								System.out.println(lines1+" "+lines2);
 						    }
@@ -100,9 +75,10 @@ public class Onenlj {
 				}
 			  }
 			
+		
+		fr.close();
+		sr.close();
 		}
-		//fr.close();
-		//sr.close();
 	}
 	
 		
