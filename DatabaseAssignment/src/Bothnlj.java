@@ -10,7 +10,16 @@ public class Bothnlj {
 
 		int numberoflines1 = ReadingWritingFile.readFirstLineofFile(file1);
 		int numberoflines2 = ReadingWritingFile.readFirstLineofFile(file2);
-
+		String temp = "";
+		if (numberoflines1>=numberoflines2)
+		{
+			temp.concat(file2);
+			file2 = "";
+			file2.concat(file1);
+			file1 = "";
+			file1.concat(temp);
+		}
+		
 		String file1line = "";
 		String file2line = "";
 		
@@ -35,15 +44,16 @@ public class Bothnlj {
 							 continue;
 						 }else
 						 {
-							 concatenated_string +=file1line.split(",")[counter];
+							 concatenated_string.concat(file1line.split(",")[counter]);
 						 }
 					 }
-					 concatenated_string +=file2line;
+					 concatenated_string.concat(file2line);
 					 ReadingWritingFile.Writethis(concatenated_string);
 				 }
 			}
 			fr = new BufferedReader(new FileReader(file1));
 		}
 	}
+
 }
 
