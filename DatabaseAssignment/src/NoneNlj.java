@@ -40,7 +40,7 @@ public class NoneNlj {
 				for (int j=0;j<=numOfLines2;j++)
 				{
 					lines2=sr.readLine();
-					memory[memsize-1]=Integer.parseInt(lines2.split(",")[attributesF2]);//change in every iteration only the last record in the memory
+					memory[memory.length-1]=Integer.parseInt(lines2.split(",")[attributesF2]);//change in every iteration only the last record in the memory
 					for(int l=0;l<=memsize-1;l++){
 						if(memory[l]==memory[memsize-1]){
 							ReadingWritingFile.Writethis(lines1);

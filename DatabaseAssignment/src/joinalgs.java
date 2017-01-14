@@ -30,8 +30,10 @@ public class joinalgs {
 			// filepath1,filepath2,memory size,collumnf1,collumnf2
 			//create decision method to choose case for nlj
 			//Nonenlj fits -->joinstart
+			String file1="A.csv";
+			String file2="B.csv";
 			try {
-				NoneNlj.joinstart("A.csv", "B.csv", 100, 0, 1);
+				NoneNlj.joinstart(file1, file2, 100, 0, 1);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
