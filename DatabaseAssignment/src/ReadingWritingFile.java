@@ -21,7 +21,7 @@ public class ReadingWritingFile {
 	    return numOflines;
 	}
 	
-	public void Writethis(String text)
+	public static void Writethis(String text)
 	{
 
 		try{
