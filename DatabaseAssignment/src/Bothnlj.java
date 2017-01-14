@@ -11,29 +11,23 @@ public class Bothnlj {
 		int numberoflines1 = ReadingWritingFile.readFirstLineofFile(file1);
 		int numberoflines2 = ReadingWritingFile.readFirstLineofFile(file2);
 		String temp = "";
-		if (numberoflines1>=numberoflines2)
-		{
-			temp.concat(file2);
-			file2 = "";
-			file2.concat(file1);
-			file1 = "";
-			file1.concat(temp);
+		if(numberoflines1>=numberoflines2){//put the file with less records in the outter loop
+			swapStrings(file1,file2);
 		}
 		
 		String file1line = "";
-		String file2line = "";
-		
+		String file2line = "";	
 		BufferedReader fr = new BufferedReader(new FileReader(file1));
 		file1line = fr.readLine();
 		BufferedReader sr = new BufferedReader(new FileReader(file2));
 		file2line = sr.readLine();
 		
-		while(((file2line = sr.readLine())!=null))	
+		while(((file1line = fr.readLine())!=null))	
 		{
-			int line2 = Integer.parseInt(file2line.split(",")[cattribute2]);
-			while (((file1line =fr.readLine())!=null))
+			int line1 = Integer.parseInt(file2line.split(",")[cattribute1]);
+			while (((file2line = sr.readLine())!=null))
 			{
-				int line1 = Integer.parseInt(file1line.split(",")[cattribute1]);
+				int line2 = Integer.parseInt(file1line.split(",")[cattribute2]);
 				 if (line1 == line2)
 				 {
 					 String concatenated_string = "";
@@ -51,8 +45,14 @@ public class Bothnlj {
 					 ReadingWritingFile.Writethis(concatenated_string);
 				 }
 			}
-			fr = new BufferedReader(new FileReader(file1));
+			sr = new BufferedReader(new FileReader(file1));
 		}
+	}
+	
+	public static void swapStrings(String a,String b){
+	    String temp = a;
+	    a = b;
+	    b = temp;
 	}
 
 }
