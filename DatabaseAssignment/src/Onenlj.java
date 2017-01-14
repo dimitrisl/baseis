@@ -6,17 +6,18 @@ import java.io.IOException;
 public class Onenlj {
 	public static void main(String[] args) {
 		
-		String f1="\\Users\\Administrator\\Documents\\GitHub\\baseis\\DatabaseAssignment\\examples\\A.csv";
-		String f2="\\Users\\Administrator\\Documents\\GitHub\\baseis\\DatabaseAssignment\\examples\\B.csv";
-		int m=151;
-		int a1= 2;
+		String f1="test1.csv";
+		String f2="test2.csv";
+		int m=8;
+		int a1=2;
 		int a2=2;
-			try {
-				Onenlj.joinstart(f1,f2,m,a1,a2);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		
+				try {
+					Onenlj.joinstart(f1,f2,m,a1,a2);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 		
 	}
 	
@@ -38,12 +39,13 @@ public class Onenlj {
 		BufferedReader sr=new BufferedReader(new FileReader(file2));
 		//fr.readLine();
 		//sr.readLine();
+		
 		if (numberoflines1==memsize-1){
 		while ((lines1 = fr.readLine()) != null || (((lines2 = sr.readLine())!= null)))
 		{
 			for(int k=0;k<=memsize-1;k++){//readFile1 and put it in memory
 				lines1=fr.readLine();
-				mem[k]=Integer.parseInt(lines1.split(",")[1]);
+				mem[k]=Integer.parseInt(lines1.split(",")[attribute1-1]);
 				System.out.println(mem[k]);
 			}
 			for (int i=0;i<(memsize-1);i++) //
@@ -51,8 +53,8 @@ public class Onenlj {
 				for (int j=0;j<=numberoflines2;j++)
 				{
 					lines2=sr.readLine();
-					mem[memsize]=Integer.parseInt(lines2.split(",")[2]);//change in every iteration only the last record in the memory
-						if(mem[i]==mem[memsize]){
+					mem[memsize-1]=Integer.parseInt(lines2.split(",")[attribute2-1]);//change in every iteration only the last record in the memory
+						if(mem[i]==mem[memsize-1]){
 							//ReadingWritingFile.Writethis(lines1);
 							System.out.println(lines1+" "+lines2);
 					}
@@ -66,6 +68,7 @@ public class Onenlj {
 				
 			}
 		  }
+		
 		}else if(numberoflines1<memsize-1){
 			int n= memsize-numberoflines1;
 			while ((lines1 = fr.readLine()) != null || (((lines2 = sr.readLine())!= null)))
@@ -80,8 +83,8 @@ public class Onenlj {
 					{
 						for (int l=0;l<n;l++){
 						lines2=sr.readLine();
-						mem[memsize-l]=Integer.parseInt(lines2.split(",")[attribute2-1]);//change in every iteration only the last record in the memory
-							if(mem[i]==mem[memsize-l]){
+						mem[memsize-1]=Integer.parseInt(lines2.split(",")[attribute2-1]);//change in every iteration only the last record in the memory
+							if(mem[i]==mem[memsize-1]){
 								//ReadingWritingFile.Writethis(lines1);
 								System.out.println(lines1+" "+lines2);
 						    }
@@ -98,8 +101,8 @@ public class Onenlj {
 			  }
 			
 		}
-		fr.close();
-		sr.close();
+		//fr.close();
+		//sr.close();
 	}
 	
 		

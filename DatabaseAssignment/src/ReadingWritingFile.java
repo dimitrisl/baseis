@@ -13,11 +13,11 @@ public class ReadingWritingFile {
 	    try (BufferedReader br = new BufferedReader(new FileReader(file))) {
 	    
 	    	numOflines = Integer.parseInt(br.readLine());
-		    
+	    	
 	    } catch (IOException e) {
 	        e.printStackTrace();
 	    }
-	
+	    
 	    return numOflines;
 	}
 	
