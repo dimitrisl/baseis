@@ -5,15 +5,13 @@ import java.io.IOException;
 
 public class Bothnlj {
 	
-	public static void joinstart(String file1,String file2,int memory,int cattribute1,int cattribute2) throws IOException//filepath1,filepath2,memory size,collumnf1,collumnf2
+	public static void joinstart(String file1,String file2,int cattribute1,int cattribute2) throws IOException//filepath1,filepath2,memory size,collumnf1,collumnf2
 	{
 
 		int numberoflines1 = ReadingWritingFile.readFirstLineofFile(file1);
 		int numberoflines2 = ReadingWritingFile.readFirstLineofFile(file2);
 		String file1line = "";
 		String file2line = "";
-		int[] memo1 = new int[numberoflines1];
-		int[] memo2 = new int[numberoflines2];
 		BufferedReader fr = new BufferedReader(new FileReader(file1));
 		file1line = fr.readLine();
 		BufferedReader sr = new BufferedReader(new FileReader(file2));
