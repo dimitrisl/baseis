@@ -10,8 +10,10 @@ public class Bothnlj {
 
 		int numberoflines1 = ReadingWritingFile.readFirstLineofFile(file1);
 		int numberoflines2 = ReadingWritingFile.readFirstLineofFile(file2);
+
 		String file1line = "";
 		String file2line = "";
+		
 		BufferedReader fr = new BufferedReader(new FileReader(file1));
 		file1line = fr.readLine();
 		BufferedReader sr = new BufferedReader(new FileReader(file2));
@@ -40,6 +42,7 @@ public class Bothnlj {
 					 ReadingWritingFile.Writethis(concatenated_string);
 				 }
 			}
+			fr = new BufferedReader(new FileReader(file1));
 		}
 	}
 }
