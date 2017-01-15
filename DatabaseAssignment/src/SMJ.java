@@ -30,16 +30,21 @@ public class SMJ {
 			text1[y]=fr.readLine();
 		}
 		
+		BufferedReader sr=new BufferedReader(new FileReader(f2));
+		sr.readLine();
+		for (int y=0;y<numberoflines2;y++)
+		{
+			text2[y]=sr.readLine();
+		}
 		
 		text1 = sortedbyattribute(text1,attribute1,numberoflines1);// sorted file1
 		text2 = sortedbyattribute(text2,attribute2,numberoflines2);// sorted file2
 		
-	
 		
-		
+		//from now on we have to take some of the records of text1
+		//to the temporary file.
 		for (int counter=0;counter<text1.length;counter++)
 		{
-			text1[counter] =  text1[counter].replace((text1[counter].split("A")[0])+"A","");
 			System.out.println(text1[counter]);
 		}
 
@@ -58,6 +63,13 @@ public class SMJ {
 			line[i] = file[i].split(",")[attribute1].toString()+"A"+file[i];
 		}
 		Arrays.sort(line);
+		
+		for (int counter=0;counter<line.length;counter++)
+		{
+			line[counter] =  line[counter].replace((line[counter].split("A")[0])+"A","");
+			System.out.println(line[counter]);
+		}
+		
 		return line; 
 	}
 
