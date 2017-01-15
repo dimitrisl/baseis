@@ -4,22 +4,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class Onenlj {
-	public static void main(String[] args) {
-		
-		String f1="test.csv";
-		String f2="test3.csv";
-		int m=10;
-		int a1=2;
-		int a2=2;
-				try {
-					joinstart(f1,f2,m,a1,a2);
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-		
-	}
-	
+			
 	public static void joinstart(String file1,String file2,int memsize,int attribute1,int attribute2)throws IOException
 	{
 		
@@ -29,11 +14,6 @@ public class Onenlj {
 		String lines2 = "";
 		int []mem = new int[memsize];
 		
-
-		/*if(numberoflines1>=numberoflines2){//put the file with less records in the outer loop
-			swapIntegers(numberoflines1,numberoflines2);
-			swapStrings(file1,file2);
-			swapIntegers(attribute1,attribute2);*/
 		
 		BufferedReader fr=new BufferedReader(new FileReader(file1));
 		BufferedReader sr=new BufferedReader(new FileReader(file2));
@@ -48,51 +28,45 @@ public class Onenlj {
 				//restart reading file from the beginning
 				fr = new BufferedReader(new FileReader(file1));
 				fr.readLine();
-				sr.readLine();
-			int n= memsize-numberoflines1;
-			while ((lines1 = fr.readLine()) != null)
-			{
-				for (int i=0;i<=numberoflines1;i++) 
+			    int n= memsize-numberoflines1;
+				
+			    for (int i=0;i<=numberoflines1;i++) 
 				{	
-					for (int j=0;j<=numberoflines2;j=j+n)
+			    	lines1=fr.readLine();
+					sr = new BufferedReader(new FileReader(file2));
+				    lines2=sr.readLine();
+					loop:
+					for (int j=0;j<=numberoflines2; j= j+n)
 					{
-						for (int l=0;l<n;l++){
-						lines2=sr.readLine();
-						mem[memsize-l-1]=Integer.parseInt(lines2.split(",")[attribute2]);//change in every iteration only the last record in the memory
-							if(mem[i]==mem[memsize-l-1]){
-								//ReadingWritingFile.Writethis(lines1);
-								System.out.println(lines1+" "+lines2);
-						    }
+						for (int y=1;y<n;y++){
+							
+							lines2=sr.readLine();
+							if (lines2!=null){
+								mem[memsize-y]=Integer.parseInt(lines2.split(",")[attribute2]);
+								String concatenated_string = "";
+								if (mem[i] == mem[memsize-y])
+								 {
+									 
+									 for (int counter = 0;counter<lines1.split(",").length;counter++)
+									 {
+										 if (counter == attribute1)
+										 {
+											 continue;
+										 }else
+										 {
+											 concatenated_string =concatenated_string + lines1.split(",")[counter] + ",";
+										 }
+									 }
+									 concatenated_string+=lines2;
+									 //ReadingWritingFile.Writethis(concatenated_string+"\n");
+									 System.out.println(concatenated_string);
+								 }
+							}else{break loop;}
 						}
-					}
-					
-					if (((lines2 = sr.readLine()) == null))
-					{
-						sr = new BufferedReader(new FileReader(file2));
-						//go back to the beginning
-					}
-					
+					}				
 				}
-			  }
-			
-		
-		fr.close();
-		sr.close();
-		}
-	
-	
-		
-	
-	public static void swapIntegers(int a,int b){
-	    int temp = a;
-	    a = b;
-	    b = temp;
+			}
+			//fr.close();
+			//sr.close();
 	}
-	public static void swapStrings(String a,String b){
-	    String temp = a;
-	    a = b;
-	    b = temp;
-	}
-	
-}
 
