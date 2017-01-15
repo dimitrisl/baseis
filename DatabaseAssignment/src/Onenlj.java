@@ -30,19 +30,20 @@ public class Onenlj {
 				fr.readLine();
 			    int n= memsize-numberoflines1;
 				
-			    for (int i=0;i<=numberoflines1;i++) 
+			    for (int i=0;i<=numberoflines1;i++) //iterate through first file
 				{	
 			    	lines1=fr.readLine();
-					sr = new BufferedReader(new FileReader(file2));
+					sr = new BufferedReader(new FileReader(file2));			//restart the file2 reading
 				    lines2=sr.readLine();
+				    
 					loop:
-					for (int j=0;j<=numberoflines2; j= j+n)
+					for (int j=0;j<=numberoflines2; j= j+n)		//iterate through lines of second file
 					{
-						for (int y=1;y<n;y++){
+						for (int y=1;y<n;y++){					// inner memory iteration and comparison 
 							
 							lines2=sr.readLine();
 							if (lines2!=null){
-								mem[memsize-y]=Integer.parseInt(lines2.split(",")[attribute2]);
+								mem[memsize-y]=Integer.parseInt(lines2.split(",")[attribute2]);   		//put in the spots of the memory left as many tuples of the second file fit
 								String concatenated_string = "";
 								if (mem[i] == mem[memsize-y])
 								 {
@@ -58,8 +59,7 @@ public class Onenlj {
 										 }
 									 }
 									 concatenated_string+=lines2;
-									 //ReadingWritingFile.Writethis(concatenated_string+"\n");
-									 System.out.println(concatenated_string);
+									 ReadingWritingFile.Writethis(concatenated_string+"\n");
 								 }
 							}else{break loop;}
 						}
