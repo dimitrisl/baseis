@@ -48,10 +48,24 @@ public class joinalgs {
 		
 	}
 	
-	public int decidenlj(int File1,int File2,int memsize)
+	public String decidenlj(String File1,String File2,int memsize)
 	{
-		int decision = 0;
-
+		String decision = "";
+		int numOfLines1=ReadingWritingFile.readFirstLineofFile(File1);
+		int numOfLines2=ReadingWritingFile.readFirstLineofFile(File2);
+		
+		if ((numOfLines1>memsize) && (numOfLines2>memsize))
+		{
+			decision = "None";
+		}
+		else if ((numOfLines1<=memsize) ^ (numOfLines2<=memsize))
+		{
+			decision = "One";
+		}
+		else if (numOfLines1+numOfLines2<=memsize)
+		{
+			decision = "Both";
+		}
 		return decision; //poia apo tis 3 periptwseis nlj
 	}
 
