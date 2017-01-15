@@ -6,9 +6,9 @@ import java.io.IOException;
 public class Onenlj {
 	public static void main(String[] args) {
 		
-		String f1="A.csv";
-		String f2="B.csv";
-		int m=200;
+		String f1="test.csv";
+		String f2="test3.csv";
+		int m=10;
 		int a1=2;
 		int a2=2;
 				try {
@@ -30,10 +30,10 @@ public class Onenlj {
 		int []mem = new int[memsize];
 		
 
-		if(numberoflines1>=numberoflines2){//put the file with less records in the outer loop
+		/*if(numberoflines1>=numberoflines2){//put the file with less records in the outer loop
 			swapIntegers(numberoflines1,numberoflines2);
 			swapStrings(file1,file2);
-			swapIntegers(attribute1,attribute2);
+			swapIntegers(attribute1,attribute2);*/
 		
 		BufferedReader fr=new BufferedReader(new FileReader(file1));
 		BufferedReader sr=new BufferedReader(new FileReader(file2));
@@ -58,8 +58,8 @@ public class Onenlj {
 					{
 						for (int l=0;l<n;l++){
 						lines2=sr.readLine();
-						mem[memsize-2]=Integer.parseInt(lines2.split(",")[attribute2]);//change in every iteration only the last record in the memory
-							if(mem[i]==mem[memsize-2]){
+						mem[memsize-l-1]=Integer.parseInt(lines2.split(",")[attribute2]);//change in every iteration only the last record in the memory
+							if(mem[i]==mem[memsize-l-1]){
 								//ReadingWritingFile.Writethis(lines1);
 								System.out.println(lines1+" "+lines2);
 						    }
@@ -79,7 +79,7 @@ public class Onenlj {
 		fr.close();
 		sr.close();
 		}
-	}
+	
 	
 		
 	
