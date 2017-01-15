@@ -34,7 +34,7 @@ public class NoneNlj {
 		sr.readLine();
 		
 		
-		while ((lines1 = fr.readLine()) != null || (((lines2 = sr.readLine())!= null)))
+		while ((lines1 = fr.readLine()) != null /*|| (((lines2 = sr.readLine())!= null))*/)
 		{
 
 			for (int i=0;i<numOfLines1/(memsize-1);i++) //poses fores xwraei to M ston pinaka me tis ligoteres eggrafes
@@ -46,15 +46,10 @@ public class NoneNlj {
 					memory[k]=Integer.parseInt(temp[attributesF1]);
 									
 				}
-				//print memory
-				for(int m=0;m<memsize;m++){
-					System.out.println(m+" "+memory[m]);
-				}
-				
 				
 				for (int j=0;j<numOfLines2;j++)
 				{	
-					lines2=sr.readLine();
+					lines2=sr.readLine();//System.out.println(lines2);
 					memory[memsize-1]=Integer.parseInt(lines2.split(",")[attributesF2]);//change in every iteration only the last record in the memory
 					/*for(int l=0;l<memsize-1;l++){
 						if(memory[l]==memory[memsize-1]){
@@ -65,16 +60,12 @@ public class NoneNlj {
 					for(int m=0;m<memsize;m++){
 						System.out.println(m+" "+memory[m]);
 					}
+					
 
 				}
-				if (((lines2 = sr.readLine()) == null))
-				{	
-					sr.close();
-					sr = new BufferedReader(new FileReader(filepath2));
-					sr.readLine();
-				}
-				
-								
+				sr.close();
+				sr = new BufferedReader(new FileReader(filepath2));
+				sr.readLine();
 				
 			}
 		}
