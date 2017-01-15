@@ -9,22 +9,30 @@ public class NoneNlj {
 		int numOfLines1;
 		int numOfLines2;
 		int[] memory=new int[memsize]; //allocates memory
+		//print memory
+		System.out.println("First");
+		for(int m=0;m<memsize;m++){
+			System.out.println(m+" "+memory[m]);
+		}
+		System.out.println("-----------");
 		String lines1="";
 		String lines2="";
 		numOfLines1=ReadingWritingFile.readFirstLineofFile(filepath1);
 		numOfLines2=ReadingWritingFile.readFirstLineofFile(filepath2);
 		
-		if(numOfLines1>=numOfLines2){//put the file with less records in the outter loop
+		/*if(numOfLines1>=numOfLines2){//put the file with less records in the outer loop
 			swapIntegers(numOfLines1,numOfLines2);
 			swapStrings(filepath1,filepath2);
 			swapIntegers(attributesF1,attributesF2);
-		}
+		}*/
 		
-		BufferedReader fr=new BufferedReader(new FileReader(filepath1));
-		BufferedReader sr=new BufferedReader(new FileReader(filepath2));
-		//skip the first line
-		fr.readLine();
+		FileReader fr1=new FileReader(filepath1);
+		FileReader fr2=new FileReader(filepath2);
+		BufferedReader fr=new BufferedReader(fr1);
+		BufferedReader sr=new BufferedReader(fr2);
+		//fr.readLine();
 		sr.readLine();
+		
 		
 		while ((lines1 = fr.readLine()) != null || (((lines2 = sr.readLine())!= null)))
 		{
@@ -34,28 +42,44 @@ public class NoneNlj {
 				//readFile1 and put it in memory
 				for(int k=0;k<memsize-1;k++){
 					lines1=fr.readLine();
-					memory[k]=Integer.parseInt(lines1.split(",")[attributesF1]);				
+					String []temp=lines1.split(",");
+					memory[k]=Integer.parseInt(temp[attributesF1]);
+									
+				}
+				//print memory
+				for(int m=0;m<memsize;m++){
+					System.out.println(m+" "+memory[m]);
 				}
 				
-				for (int j=0;j<=numOfLines2;j++)
-				{
+				
+				for (int j=0;j<numOfLines2;j++)
+				{	
 					lines2=sr.readLine();
-					memory[memory.length-1]=Integer.parseInt(lines2.split(",")[attributesF2]);//change in every iteration only the last record in the memory
-					for(int l=0;l<=memsize-1;l++){
+					memory[memsize-1]=Integer.parseInt(lines2.split(",")[attributesF2]);//change in every iteration only the last record in the memory
+					/*for(int l=0;l<memsize-1;l++){
 						if(memory[l]==memory[memsize-1]){
 							ReadingWritingFile.Writethis(lines1);
 						}
+					}*/
+					//print memory
+					for(int m=0;m<memsize;m++){
+						System.out.println(m+" "+memory[m]);
 					}
+
+				}
+				if (((lines2 = sr.readLine()) == null))
+				{	
+					sr.close();
+					sr = new BufferedReader(new FileReader(filepath2));
+					sr.readLine();
 				}
 				
-				if (((lines2 = sr.readLine()) == null))
-				{
-					sr = new BufferedReader(new FileReader(filepath2));
-					//go back to the beggining
-				}
+								
 				
 			}
 		}
+		fr.close();
+		sr.close();
 	}
 	
 	public static void swapIntegers(int a,int b){
@@ -67,5 +91,16 @@ public class NoneNlj {
 	    String temp = a;
 	    a = b;
 	    b = temp;
+	}
+	
+	public static void main(String[] args) {
+		String file1="test.csv";
+		String file2="test3.csv";
+		try {
+			joinstart(file1,file2 , 2, 0, 1);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
