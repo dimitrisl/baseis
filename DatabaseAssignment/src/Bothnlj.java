@@ -5,11 +5,6 @@ import java.io.IOException;
 
 public class Bothnlj {
 
-	public static void main(String[] args) throws IOException
-	{
-		joinstart("test2.csv","test1.csv",1,1);
-	}
-
 	public static void joinstart(String file1,String file2,int cattribute1,int cattribute2) throws IOException//filepath1,filepath2,memory size,collumnf1,collumnf2
 	{
 
