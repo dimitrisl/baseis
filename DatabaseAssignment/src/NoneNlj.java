@@ -55,7 +55,8 @@ public class NoneNlj {
 					memory[memsize-1]=Integer.parseInt(lines2.split(",")[attributesF2]);//change in every iteration only the last record in the memory
 					for(int l=0;l<memsize-1;l++){
 						if(memory[l]==memory[memsize-1]){
-							System.out.println(memlines[l]+","+memlines[memsize-1].substring(0, attributesF2+1)+"\b"+memlines[memsize-1].substring(attributesF2+2));
+							System.out.println(memlines[l]+","+memlines[memsize-1]);
+							ReadingWritingFile.Writethis(memlines[l]+","+memlines[memsize-1]);
 							
 						}
 							
