@@ -59,7 +59,6 @@ public class NoneNlj {
 							
 						}
 							
-							//ReadingWritingFile.Writethis(lines1);
 					}
 							
 				
