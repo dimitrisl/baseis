@@ -17,13 +17,16 @@ public class SMJ {
 		int numberoflines2 = ReadingWritingFile.readFirstLineofFile(f2);
 		String []memory = new String[memsize];
 		
-		for(int i=0;i<numberoflines1/memsize;i++){
-			createSublist(f1,memory,attribute1,i);
+		BufferedReader fr=new BufferedReader(new FileReader(f1));
+		for(int i=0;i<Math.ceil(numberoflines1/memsize);i++){
+			createSublist(f1,fr,memory,attribute1,i);
 		}
-		
-		/*for(int j=0;j<numberoflines2/memsize;j++){
-			createSublist(f2,memory,attribute2,j);
-		}*/
+		fr.close();
+		/*BufferedReader sr=new BufferedReader(new FileReader(f2));
+		for(int j=0;j<numberoflines2/memsize;j++){
+			createSublist(f2,sr,memory,attribute2,j);
+		}
+		sr.close();*/
 		
 		
 //			String []placeholder = new String [memsize];
@@ -52,9 +55,9 @@ public class SMJ {
 		
 	}
 
-	public static void createSublist(String filepath,String []mem,int att,int iteration) throws IOException{
+	public static void createSublist(String filepath,BufferedReader br,String []mem,int att,int iteration) throws IOException{
 		
-		BufferedReader br=new BufferedReader(new FileReader(filepath));
+		
 		br.readLine();
 		String line = br.readLine();
 		
@@ -82,7 +85,7 @@ public class SMJ {
 			ReadingWritingFile.Writethis(mem[i]+"\n",filepath+iteration+"sublist.csv");
 		}
 		
-		br.close();
+		
 		
 	}
 	public static String[] sortedbyattribute(String[] file,int attribute1,int numberoflines)
