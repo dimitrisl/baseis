@@ -24,7 +24,7 @@ public class Receivelists {
 				String insert = "";
 				Boolean state = true;
 				String worst_case;
-				int counter =0;
+				int counter = 0;
 				while (state)
 				{
 						compare = findmin(rows,attribute);
@@ -34,8 +34,8 @@ public class Receivelists {
 							rows[min_loc] =insert;
 						}else
 							{
-								rows[min_loc] = compare[2]+","+compare[2]+","+compare[2]+","+compare[2];
-								worst_case = rows[min_loc];
+								//worst_case = compare[2]+","+compare[2]+","+compare[2]+","+compare[2];
+								rows[min_loc] = "empty";	
 								counter++;
 							}
 						if (counter == buffers.length) 
@@ -54,7 +54,7 @@ public class Receivelists {
 	    int tmp;
 		for (int counter=0;counter<arr.length;counter++)
 		{
-			if (arr[counter]!=null)
+			if (arr[counter]!=null && arr[counter]!="empty")
 			{
 				if (Integer.parseInt(arr[counter].split(",")[attr])>max)
 					{
@@ -65,7 +65,7 @@ public class Receivelists {
 	    int minimum = max;
 		
 	    for (int counter = 0; counter < arr.length ; counter++) {
-			if (arr[counter]!=null)
+			if (arr[counter]!=null &&arr[counter]!="empty")
 			{	
 				tmp = Integer.parseInt(arr[counter].split(",")[attr]);
 		    	if (tmp<minimum)
