@@ -8,7 +8,7 @@ public class SMJ {
 	
 	public static void main(String[] args) throws IOException
 	{
-		smjjoinstart("test.csv","test3.csv",10,1,2);
+		smjjoinstart("test.csv","test3.csv",2,1,2);
 	}
 	
 	
