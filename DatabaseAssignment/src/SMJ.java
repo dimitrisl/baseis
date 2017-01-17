@@ -1,14 +1,13 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Comparator;
+
 
 public class SMJ {
 	
 	public static void main(String[] args) throws IOException
 	{
-		smjjoinstart("A.csv","B.csv",20,1,2);
+		smjjoinstart("A.csv","B.csv",200,1,2);
 	}
 	
 	
@@ -24,11 +23,12 @@ public class SMJ {
 			createSublist(f1,fr,memory,attribute1,i);
 		}
 		fr.close();
-		/*BufferedReader sr=new BufferedReader(new FileReader(f2));
-		for(int j=0;j<numberoflines2/memsize;j++){
+		BufferedReader sr=new BufferedReader(new FileReader(f2));
+		sr.readLine();
+		for(int j=0;j<=numberoflines2/memsize;j++){
 			createSublist(f2,sr,memory,attribute2,j);
 		}
-		sr.close();*/
+		sr.close();
 	}
 	
 	public static void OutputTuples(int i, int j, int numberoflines1, int numberoflines2){
@@ -38,7 +38,7 @@ public class SMJ {
 	public static void createSublist(String filepath,BufferedReader br,String []mem,int attr,int iteration) throws IOException{
 		
 		String line;
-		//System.out.println(line+"!!!");
+		
 		for (int i=0;i<mem.length;i++)
 		{
 			line = br.readLine();
@@ -55,9 +55,7 @@ public class SMJ {
 		
 		mem =sortedbyattribute(mem,attr);
 		
-		System.out.println(filepath+iteration+"sublist.csv");
 		for(int i=0;i<mem.length;i++){
-			System.out.println(mem[i]);
 			if(mem[i]=="-1,-1,-1,-1"){continue;}
 			ReadingWritingFile.Writethis(mem[i]+"\n",filepath+iteration+"sublist.csv");
 			
@@ -82,5 +80,3 @@ public class SMJ {
 	    return arr;
 	} 
 }
-
-	
