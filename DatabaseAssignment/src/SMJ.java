@@ -28,35 +28,13 @@ public class SMJ {
 			createSublist(f2,sr,memory,attribute2,j);
 		}
 		sr.close();*/
-		
-		
-//			String []placeholder = new String [memsize];
-//			int counter = 0;
-//			while (memory[counter]!="EMPTY")
-//				{
-//					placeholder[counter] = memory[counter];
-//					counter++;
-//				}
-//			placeholder = sortedbyattribute(placeholder,attribute1,memsize);
-//			
-			
-			
-			
-
-		//from now on we have to take some of the records of text1
-		//to the temporary file.
-//		for (int counter=0;counter<memory.length;counter++)
-//		{
-//			System.out.println(memory[counter]);
-//		}
-
 	}
 	
 	public static void OutputTuples(int i, int j, int numberoflines1, int numberoflines2){
 		
 	}
 
-	public static void createSublist(String filepath,BufferedReader br,String []mem,int att,int iteration) throws IOException{
+	public static void createSublist(String filepath,BufferedReader br,String []mem,int attr,int iteration) throws IOException{
 		
 		String line=br.readLine();
 		System.out.println(line+"!!!");
@@ -72,7 +50,7 @@ public class SMJ {
 			line = br.readLine();
 		}
 		
-		mem =sortedbyattribute(mem,att,mem.length);
+		mem =sortedbyattribute(mem,attr);
 		
 		System.out.println(filepath+iteration+"sublist.csv");
 		for(int i=0;i<mem.length;i++){
@@ -84,35 +62,23 @@ public class SMJ {
 		
 		
 	}
-	public static String[] sortedbyattribute(String[] file,int attribute1,int numberoflines)
+	public static String[] sortedbyattribute(String[] arr,int attr)
 	{
-		String []line = new String[numberoflines];
-		
-		for (int i=0;i<file.length;i++)
-		{
-			if (file[i]=="Z")
-			{
-				line[i]=null;
-			}
-			else
-			{
-				line[i] = file[i].split(",")[attribute1].toString()+"A"+file[i];
-			}
-		}
-		//Arrays.sort(line);
-		Arrays.sort(line, Comparator.nullsLast(String.CASE_INSENSITIVE_ORDER));
+		String tmp;
+		 
+	    for (int c = 0; c < ( arr.length - 1 ); c++) {
+	      for (int d = 0; d < arr.length - c - 1; d++) {
+	        if ((Integer.parseInt(arr[d].split(",")[attr])) > (Integer.parseInt(arr[d+1].split(",")[attr]))) /* For descending order use < */
+	        {
+	          tmp      = arr[d];
+	          arr[d]   = arr[d+1];
+	          arr[d+1] = tmp;
+	        }
+	      }
+	    }
 
-		for (int counter=0;counter<line.length;counter++)
-		{
-			if (line[counter]!=null)
-			{	
-				line[counter] =  line[counter].replace((line[counter].split("A")[0])+"A","");
-			}
-		}
-		
-		return line; 
-	}
-
-
+	    return arr;
+	} 
 }
+
 	
