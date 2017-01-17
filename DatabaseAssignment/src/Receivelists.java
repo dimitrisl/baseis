@@ -4,8 +4,9 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class Receivelists {
+		
 
-	public void reclists(String file,int numfiles,int attribute,int memorysize) throws IOException
+	public static void reclists(String file,int numfiles,int attribute,int memorysize) throws IOException
 	{
 			if (numfiles<=memorysize)
 			{
@@ -20,6 +21,7 @@ public class Receivelists {
 				{
 					buffers[i]=new BufferedReader(new FileReader(file+i+"sublist.csv"));
 					rows[i] = buffers[i].readLine();
+					System.out.println(rows[i]);
 				}
 
 				int min_loc;
@@ -61,12 +63,14 @@ public class Receivelists {
 	{
 		String []min={"",""};
 		String min_location = "";
-	    int tmp ;
+	    int tmp = 0 ;
 	    int minimum = Integer.parseInt(arr[0].split(",")[attr]);
-		for (int counter = 1; counter < arr.length ; counter++) {
+		for (int counter = 0; counter < arr.length ; counter++) {
+			//System.out.println(arr[counter]);
 			if (arr[counter]!="--")
 			{	
-				tmp = (Integer.parseInt(arr[counter].split(",")[attr]));
+				System.out.println(tmp);
+				tmp = Integer.parseInt(arr[counter].split(",")[attr]);
 		    	if (tmp<minimum)
 		    	{
 		    		minimum = tmp;
@@ -77,5 +81,14 @@ public class Receivelists {
 		}
 	    return min; // return max line
 	} 
+
+
+
+	public static void main(String[] args) throws IOException
+	{
+			reclists("B.csv", 150, 1, 2);
+	}
+
+
 
 }

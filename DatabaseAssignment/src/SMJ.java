@@ -19,7 +19,7 @@ public class SMJ {
 		BufferedReader fr=new BufferedReader(new FileReader(f1));
 		fr.readLine();
 		for(int i=0;i<=numberoflines1/memsize;i++){
-			
+			System.out.println(numberoflines1/memsize);
 			createSublist(f1,fr,memory,attribute1,i);
 		}
 		fr.close();
