@@ -35,7 +35,9 @@ public class Receivelists {
 						rows[max_loc] =insert;
 					}else
 					{
-						rows[max_loc] = "0,0,0,0";
+						rows[max_loc]="";
+						for (int counter = 0 ; counter<rows[max_loc].split(",").length;counter++)
+						rows[max_loc] += "0";
 					}
 					int flag =0;
 					for (int i = 0 ;i<rows.length;i++)
