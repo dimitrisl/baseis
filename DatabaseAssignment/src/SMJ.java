@@ -1,4 +1,5 @@
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
@@ -15,27 +16,17 @@ public class SMJ {
 	public static void smjjoinstart(String f1, String f2, int memsize, int attribute1, int attribute2) throws IOException{
 		int numberoflines1 = ReadingWritingFile.readFirstLineofFile(f1);
 		int numberoflines2 = ReadingWritingFile.readFirstLineofFile(f2);
-		BufferedReader fr=new BufferedReader(new FileReader(f1));
-		fr.readLine();
-		BufferedReader sr=new BufferedReader(new FileReader(f2));
-		sr.readLine();
-		String line = fr.readLine();
 		String []memory = new String[memsize];
 		
+		for(int i=0;i<numberoflines1/memsize;i++){
+			createSublist(f1,memory,attribute1);
+		}
 		
-		while (line!=null)
-		{
-			for (int i=0;i<memory.length;i++)
-			{
-				if (line==null)
-				{
-					memory[i] = "Z";
-				}else
-				{
-					memory[i] = line ;
-				}
-				line = fr.readLine();
-			}
+		for(int j=0;j<numberoflines2/memsize;j++){
+			createSublist(f2,memory,attribute2);
+		}
+		
+		
 //			String []placeholder = new String [memsize];
 //			int counter = 0;
 //			while (memory[counter]!="EMPTY")
@@ -45,10 +36,9 @@ public class SMJ {
 //				}
 //			placeholder = sortedbyattribute(placeholder,attribute1,memsize);
 //			
-			memory =sortedbyattribute(memory,attribute1,memsize);
 			
 			
-		}
+			
 
 		//from now on we have to take some of the records of text1
 		//to the temporary file.
@@ -63,6 +53,36 @@ public class SMJ {
 		
 	}
 
+	public static void createSublist(String filepath,String []mem,int att) throws IOException{
+		
+		BufferedReader br=new BufferedReader(new FileReader(filepath));
+		br.readLine();
+		String line = br.readLine();
+		
+		while (line!=null)
+		{
+			for (int i=0;i<mem.length;i++)
+			{
+				if (line==null)
+				{
+					mem[i] = "Z";
+				}else
+				{
+					mem[i] = line ;
+				}
+				line = br.readLine();
+			}
+		}
+		
+		mem =sortedbyattribute(mem,att,mem.length);
+		
+		for(int i=0;i<mem.length;i++){
+			ReadingWritingFile.Writethis(mem[i]);//its good to put another attribute called fileout which is the name of the file we want to write
+		}
+		
+		br.close();
+		
+	}
 	public static String[] sortedbyattribute(String[] file,int attribute1,int numberoflines)
 	{
 		String []line = new String[numberoflines];
