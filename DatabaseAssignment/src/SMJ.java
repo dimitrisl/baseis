@@ -1,5 +1,4 @@
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
@@ -19,12 +18,12 @@ public class SMJ {
 		String []memory = new String[memsize];
 		
 		for(int i=0;i<numberoflines1/memsize;i++){
-			createSublist(f1,memory,attribute1);
+			createSublist(f1,memory,attribute1,i);
 		}
 		
-		for(int j=0;j<numberoflines2/memsize;j++){
-			createSublist(f2,memory,attribute2);
-		}
+		/*for(int j=0;j<numberoflines2/memsize;j++){
+			createSublist(f2,memory,attribute2,j);
+		}*/
 		
 		
 //			String []placeholder = new String [memsize];
@@ -53,7 +52,7 @@ public class SMJ {
 		
 	}
 
-	public static void createSublist(String filepath,String []mem,int att) throws IOException{
+	public static void createSublist(String filepath,String []mem,int att,int iteration) throws IOException{
 		
 		BufferedReader br=new BufferedReader(new FileReader(filepath));
 		br.readLine();
@@ -76,8 +75,10 @@ public class SMJ {
 		
 		mem =sortedbyattribute(mem,att,mem.length);
 		
+		System.out.println(filepath+iteration+"sublist.csv");
 		for(int i=0;i<mem.length;i++){
-			ReadingWritingFile.Writethis(mem[i]);//its good to put another attribute called fileout which is the name of the file we want to write
+			System.out.println(mem[i]);
+			//ReadingWritingFile.Writethis(mem[i],filepath+iteration+"sublist.csv");
 		}
 		
 		br.close();

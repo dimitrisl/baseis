@@ -5,12 +5,12 @@ import java.io.IOException;
 
 public class Bothnlj {
 
-	public static void joinstart(String file1,String file2,int cattribute1,int cattribute2) throws IOException//filepath1,filepath2,memory size,collumnf1,collumnf2
+	public static void joinstart(String file1,String file2,int cattribute1,int cattribute2,String outputFile) throws IOException//filepath1,filepath2,memory size,collumnf1,collumnf2
 	{
 
 		int numberoflines1 = ReadingWritingFile.readFirstLineofFile(file1);
 		int numberoflines2 = ReadingWritingFile.readFirstLineofFile(file2);
-		if(numberoflines1>=numberoflines2){//put the file with less records in the outter loop
+		if(numberoflines1>=numberoflines2){//put the file with less records in the outer loop
 			swapStrings(file1,file2);
 		}
 		
@@ -43,7 +43,7 @@ public class Bothnlj {
 						 }
 					 }
 					 concatenated_string+=file2line;
-					 ReadingWritingFile.Writethis(concatenated_string+"\n");
+					 ReadingWritingFile.Writethis(concatenated_string+"\n",outputFile);
 				 }
 			}
 			sr = new BufferedReader(new FileReader(file2));

@@ -22,7 +22,7 @@ public class joinalgs {
 //		String j = args[9];
 		int memory = Integer.parseInt(args[11]);
 //		String t = args[13];
-//		String o = args[15];
+		String outputFile = args[15];
 //		
 		String j="NLJ";
 		if (j=="NLJ")
@@ -37,7 +37,7 @@ public class joinalgs {
 			if (decision.equals("None"))
 			{
 				try {
-					NoneNlj.joinstart(file1, file2, 100, 0, 1);
+					NoneNlj.joinstart(file1, file2, 100, 0, 1,outputFile);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -45,7 +45,7 @@ public class joinalgs {
 			}else if (decision.equals("One"))
 			{
 				try {
-					Onenlj.joinstart(file1, file2, 100, 0, 1);
+					Onenlj.joinstart(file1, file2, 100, 0, 1,outputFile);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -53,7 +53,7 @@ public class joinalgs {
 			}else
 			{
 				try {
-					Bothnlj.joinstart(file1, file2, 0, 1);
+					Bothnlj.joinstart(file1, file2, 0, 1,outputFile);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

@@ -4,7 +4,7 @@ import java.io.IOException;
 
 public class NoneNlj {
 	
-	public static void joinstart( String filepath1, String filepath2, int memsize,int attributesF1, int attributesF2) throws IOException{
+	public static void joinstart( String filepath1, String filepath2, int memsize,int attributesF1, int attributesF2,String outputFile) throws IOException{
 		
 		int numOfLines1;
 		int numOfLines2;
@@ -52,7 +52,7 @@ public class NoneNlj {
 						if(memory[l]==memory[memsize-1]){
 							String temp=memlines[l].split(",")[attributesF1];
 							memlines[l]=memlines[l].replaceAll(temp+",","");
-							ReadingWritingFile.Writethis(memlines[l]+","+memlines[memsize-1]+"\n");
+							ReadingWritingFile.Writethis(memlines[l]+","+memlines[memsize-1]+"\n",outputFile);
 						}
 							
 					}

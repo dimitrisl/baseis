@@ -5,7 +5,7 @@ import java.io.IOException;
 
 public class Onenlj {
 			
-	public static void joinstart(String file1,String file2,int memsize,int attribute1,int attribute2)throws IOException
+	public static void joinstart(String file1,String file2,int memsize,int attribute1,int attribute2,String outputFile)throws IOException
 	{
 		
 		int numberoflines1 = ReadingWritingFile.readFirstLineofFile(file1);
@@ -59,14 +59,15 @@ public class Onenlj {
 										 }
 									 }
 									 concatenated_string+=lines2;
-									 ReadingWritingFile.Writethis(concatenated_string+"\n");
+									 ReadingWritingFile.Writethis(concatenated_string+"\n",outputFile);
 								 }
 							}else{break loop;}
 						}
 					}				
 				}
+			    /*fr.close();
+				sr.close();*/
 			}
-			//fr.close();
-			//sr.close();
+			
 	}
 

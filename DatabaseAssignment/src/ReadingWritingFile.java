@@ -21,13 +21,13 @@ public class ReadingWritingFile {
 	    return numOflines;
 	}
 	
-	public static void Writethis(String text)
+	public static void Writethis(String text,String fileName)
 	{
 
 		try{
 
 	        //Specify the file name and path here
-	    	File file =new File("./output.txt");
+	    	File file =new File("./"+fileName);
 
 	    	/* This logic is to create the file if the
 	    	 * file is not already present
