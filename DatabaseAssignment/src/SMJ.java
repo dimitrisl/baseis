@@ -8,7 +8,7 @@ public class SMJ {
 	
 	public static void main(String[] args) throws IOException
 	{
-		smjjoinstart("test.csv","test3.csv",2,1,2);
+		smjjoinstart("A.csv","B.csv",20,1,2);
 	}
 	
 	
@@ -78,7 +78,8 @@ public class SMJ {
 		System.out.println(filepath+iteration+"sublist.csv");
 		for(int i=0;i<mem.length;i++){
 			System.out.println(mem[i]);
-			//ReadingWritingFile.Writethis(mem[i],filepath+iteration+"sublist.csv");
+			if (mem[i]==null){break;}
+			ReadingWritingFile.Writethis(mem[i]+"\n",filepath+iteration+"sublist.csv");
 		}
 		
 		br.close();
@@ -107,7 +108,6 @@ public class SMJ {
 			if (line[counter]!=null)
 			{	
 				line[counter] =  line[counter].replace((line[counter].split("A")[0])+"A","");
-				System.out.println(line[counter]);
 			}
 		}
 		
