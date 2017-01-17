@@ -13,10 +13,6 @@ public class Receivelists {
 			BufferedReader[] buffers = new BufferedReader[numfiles];
 			String []rows = new String[numfiles];
 
-				for (int i = 0;i<rows.length;i++)
-				{
-					rows[i]="";//initialization
-				}
 				for (int i= 0 ;i<numfiles;i++)
 				{
 					buffers[i]=new BufferedReader(new FileReader(file+i+"sublist.csv"));
@@ -27,58 +23,61 @@ public class Receivelists {
 				String []compare;
 				String insert = "";
 				Boolean state = true;
-				String worst = "";
+				String worst_case;
+				int counter =0;
 				while (state)
 				{
-					compare = findmin(rows,attribute);
-					min_loc = Integer.parseInt(compare[1]);
-					ReadingWritingFile.Writethis(rows[min_loc]+"\n","sorted"+file+".csv");
-					if ((insert = buffers[min_loc].readLine()) != null){
-						rows[min_loc] =insert;
-					}else
+						compare = findmin(rows,attribute);
+						min_loc = Integer.parseInt(compare[1]);
+						ReadingWritingFile.Writethis(rows[min_loc]+"\n","sorted"+file+".csv");
+						if ((insert = buffers[min_loc].readLine()) != null){
+							rows[min_loc] =insert;
+						}else
+							{
+								rows[min_loc] = compare[2]+","+compare[2]+","+compare[2]+","+compare[2];
+								worst_case = rows[min_loc];
+								counter++;
+							}
+						if (counter == buffers.length) 
 						{
-							rows[min_loc]="99999999,99999999,999999999,9999999";
-							worst = rows[min_loc];
+							state = false;
+							break;
 						}
-					int flag =0;
-					for (int i = 0 ;i<rows.length;i++)
-					{
-						if (rows[i].equals(worst))
-						{
-							flag++;
-						}
-					}
-					if (flag == rows.length)
-					{
-						state = false;
-						break;
-					}
-				}
-		}
+				}//endwhile
+		}//endif
 	}
 
 	public static String[] findmin(String[] arr,int attr)
 	{
-		String []min={"0","0"};
-		String min_location = "";
-	    int tmp  ;
-	    int minimum = Integer.parseInt(arr[0].split(",")[attr]);
-	    System.out.println(minimum);
-		for (int counter = 1; counter < arr.length ; counter++) {
-			//System.out.println(arr[counter]);
-			if (arr[counter]!="--" && arr[counter]!=null)
+		String []min={"","",""};
+		int max = 0;
+	    int tmp;
+		for (int counter=0;counter<arr.length;counter++)
+		{
+			if (arr[counter]!=null)
+			{
+				if (Integer.parseInt(arr[counter].split(",")[attr])>max)
+					{
+						max = Integer.parseInt(arr[counter].split(",")[attr])+10;
+					}
+			}
+		} 
+	    int minimum = max;
+		
+	    for (int counter = 0; counter < arr.length ; counter++) {
+			if (arr[counter]!=null)
 			{	
 				tmp = Integer.parseInt(arr[counter].split(",")[attr]);
 		    	if (tmp<minimum)
 		    	{
 		    		minimum = tmp;
-		    		min[0] = arr[counter];
-		    		System.out.println(counter);
-		    		min[1] = ""+counter;
+		    		min[0] = arr[counter];//record
+		    		min[1] = ""+counter;//record location
 		    	}
 			}
 		}
-	    return min; // return max line
+		min[2] = ""+max; // maximum value of the attribute
+	    return min;
 	} 
 
 
