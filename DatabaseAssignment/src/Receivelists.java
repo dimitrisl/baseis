@@ -33,12 +33,11 @@ public class Receivelists {
 					compare = findmin(rows,attribute);
 					min_loc = Integer.parseInt(compare[1]);
 					ReadingWritingFile.Writethis(rows[min_loc]+"\n","sorted"+file+".csv");
-					insert = buffers[min_loc].readLine();
-					if (insert != null){
+					if ((insert = buffers[min_loc].readLine()) != null){
 						rows[min_loc] =insert;
 					}else
 						{
-							rows[min_loc]="--";
+							rows[min_loc]="99999999,99999999,999999999,9999999";
 							worst = rows[min_loc];
 						}
 					int flag =0;
@@ -86,6 +85,6 @@ public class Receivelists {
 
 	public static void main(String[] args) throws IOException
 	{
-			reclists("B.csv", 30, 1, 200);
+			reclists("B.csv", 30, 2, 200);
 	}
 }
