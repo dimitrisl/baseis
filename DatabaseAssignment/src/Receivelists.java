@@ -37,11 +37,7 @@ public class Receivelists {
 						rows[min_loc] =insert;
 					}else
 						{
-							rows[min_loc]="999999990";
-							for (int counter = 0 ; counter<rows[min_loc].split(",").length -1;counter++)
-								{
-								rows[min_loc] += ",999999990";
-								}
+							rows[min_loc]="--";
 							worst = rows[min_loc];
 						}
 					int flag =0;
@@ -68,14 +64,17 @@ public class Receivelists {
 	    int tmp ;
 	    int minimum = Integer.parseInt(arr[0].split(",")[attr]);
 		for (int counter = 1; counter < arr.length ; counter++) {
-	    	tmp = (Integer.parseInt(arr[counter].split(",")[attr]));
-	    	if (tmp<minimum)
-	    	{
-	    		minimum = tmp;
-	    		min[0] = arr[counter];
-	    		min[1] = ""+counter;
-	    	}
-	    }
+			if (arr[counter]!="--")
+			{	
+				tmp = (Integer.parseInt(arr[counter].split(",")[attr]));
+		    	if (tmp<minimum)
+		    	{
+		    		minimum = tmp;
+		    		min[0] = arr[counter];
+		    		min[1] = ""+counter;
+		    	}
+			}
+		}
 	    return min; // return max line
 	} 
 
