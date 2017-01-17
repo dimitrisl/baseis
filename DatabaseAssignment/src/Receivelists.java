@@ -11,7 +11,7 @@ public class Receivelists {
 			if (numfiles<=memorysize)
 			{
 			BufferedReader[] buffers = new BufferedReader[numfiles];
-			String []rows = new String[memorysize];
+			String []rows = new String[numfiles];
 
 				for (int i = 0;i<rows.length;i++)
 				{
@@ -21,7 +21,6 @@ public class Receivelists {
 				{
 					buffers[i]=new BufferedReader(new FileReader(file+i+"sublist.csv"));
 					rows[i] = buffers[i].readLine();
-					System.out.println(rows[i]);
 				}
 
 				int min_loc;
@@ -33,7 +32,7 @@ public class Receivelists {
 				{
 					compare = findmin(rows,attribute);
 					min_loc = Integer.parseInt(compare[1]);
-					ReadingWritingFile.Writethis(rows[min_loc],"sorted"+file+".csv");
+					ReadingWritingFile.Writethis(rows[min_loc]+"\n","sorted"+file+".csv");
 					insert = buffers[min_loc].readLine();
 					if (insert != null){
 						rows[min_loc] =insert;
@@ -61,20 +60,21 @@ public class Receivelists {
 
 	public static String[] findmin(String[] arr,int attr)
 	{
-		String []min={"",""};
+		String []min={"0","0"};
 		String min_location = "";
-	    int tmp = 0 ;
+	    int tmp  ;
 	    int minimum = Integer.parseInt(arr[0].split(",")[attr]);
-		for (int counter = 0; counter < arr.length ; counter++) {
+	    System.out.println(minimum);
+		for (int counter = 1; counter < arr.length ; counter++) {
 			//System.out.println(arr[counter]);
-			if (arr[counter]!="--")
+			if (arr[counter]!="--" && arr[counter]!=null)
 			{	
-				System.out.println(tmp);
 				tmp = Integer.parseInt(arr[counter].split(",")[attr]);
 		    	if (tmp<minimum)
 		    	{
 		    		minimum = tmp;
 		    		min[0] = arr[counter];
+		    		System.out.println(counter);
 		    		min[1] = ""+counter;
 		    	}
 			}
@@ -86,9 +86,6 @@ public class Receivelists {
 
 	public static void main(String[] args) throws IOException
 	{
-			reclists("B.csv", 150, 1, 2);
+			reclists("B.csv", 30, 1, 200);
 	}
-
-
-
 }
