@@ -25,7 +25,9 @@ public class Receivelists {
 				int max_loc;
 				String []compare;
 				String insert = "";
-				while (true)
+				Boolean state = true;
+				String worst = "";
+				while (state)
 				{
 					compare = findmax(rows,attribute);
 					max_loc = Integer.parseInt(compare[1]);
@@ -34,21 +36,25 @@ public class Receivelists {
 					if (insert != null){
 						rows[max_loc] =insert;
 					}else
-					{
-						rows[max_loc]="";
-						for (int counter = 0 ; counter<rows[max_loc].split(",").length;counter++)
-						rows[max_loc] += "0";
-					}
+						{
+							rows[max_loc]="0";
+							for (int counter = 0 ; counter<rows[max_loc].split(",").length -1;counter++)
+								{
+								rows[max_loc] += ",0";
+								}
+							worst = rows[max_loc];
+						}
 					int flag =0;
 					for (int i = 0 ;i<rows.length;i++)
 					{
-						if (rows[i].equals("0,0,0,0"))
+						if (rows[i].equals(worst))
 						{
 							flag++;
 						}
 					}
 					if (flag == rows.length)
 					{
+						state = false;
 						break;
 					}
 				}
