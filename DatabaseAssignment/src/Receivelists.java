@@ -22,27 +22,27 @@ public class Receivelists {
 					rows[i] = buffers[i].readLine();
 				}
 
-				int max_loc;
+				int min_loc;
 				String []compare;
 				String insert = "";
 				Boolean state = true;
 				String worst = "";
 				while (state)
 				{
-					compare = findmax(rows,attribute);
-					max_loc = Integer.parseInt(compare[1]);
-					ReadingWritingFile.Writethis(rows[max_loc],"sorted"+file+".csv");
-					insert = buffers[max_loc].readLine();
+					compare = findmin(rows,attribute);
+					min_loc = Integer.parseInt(compare[1]);
+					ReadingWritingFile.Writethis(rows[min_loc],"sorted"+file+".csv");
+					insert = buffers[min_loc].readLine();
 					if (insert != null){
-						rows[max_loc] =insert;
+						rows[min_loc] =insert;
 					}else
 						{
-							rows[max_loc]="0";
-							for (int counter = 0 ; counter<rows[max_loc].split(",").length -1;counter++)
+							rows[min_loc]="999999990";
+							for (int counter = 0 ; counter<rows[min_loc].split(",").length -1;counter++)
 								{
-								rows[max_loc] += ",0";
+								rows[min_loc] += ",999999990";
 								}
-							worst = rows[max_loc];
+							worst = rows[min_loc];
 						}
 					int flag =0;
 					for (int i = 0 ;i<rows.length;i++)
@@ -58,27 +58,25 @@ public class Receivelists {
 						break;
 					}
 				}
-				
-		
 		}
 	}
 
-	public static String[] findmax(String[] arr,int attr)
+	public static String[] findmin(String[] arr,int attr)
 	{
-		String []max={"",""};
-		String max_location = "";
+		String []min={"",""};
+		String min_location = "";
 	    int tmp ;
-	    int maximum = 0;
-		for (int counter = 0; counter < arr.length ; counter++) {
+	    int minimum = Integer.parseInt(arr[0].split(",")[attr]);
+		for (int counter = 1; counter < arr.length ; counter++) {
 	    	tmp = (Integer.parseInt(arr[counter].split(",")[attr]));
-	    	if (tmp>maximum)
+	    	if (tmp<minimum)
 	    	{
-	    		maximum = tmp;
-	    		max[0] = arr[counter];
-	    		max[1] = ""+counter;
+	    		minimum = tmp;
+	    		min[0] = arr[counter];
+	    		min[1] = ""+counter;
 	    	}
 	    }
-	    return max; // return max line
+	    return min; // return max line
 	} 
 
 }
