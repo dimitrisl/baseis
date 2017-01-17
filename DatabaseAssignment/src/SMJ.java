@@ -18,7 +18,8 @@ public class SMJ {
 		String []memory = new String[memsize];
 		
 		BufferedReader fr=new BufferedReader(new FileReader(f1));
-		for(int i=0;i<Math.ceil(numberoflines1/memsize);i++){
+		String line=fr.readLine();
+		for(int i=0;i<=numberoflines1/memsize;i++){
 			createSublist(f1,fr,memory,attribute1,i);
 		}
 		fr.close();
@@ -57,23 +58,18 @@ public class SMJ {
 
 	public static void createSublist(String filepath,BufferedReader br,String []mem,int att,int iteration) throws IOException{
 		
-		
-		br.readLine();
-		String line = br.readLine();
-		
-		while (line!=null)
+		String line=br.readLine();
+		System.out.println(line+"!!!");
+		for (int i=0;i<mem.length;i++)
 		{
-			for (int i=0;i<mem.length;i++)
+			if (line==null)
 			{
-				if (line==null)
-				{
-					mem[i] = "Z";
-				}else
-				{
-					mem[i] = line ;
-				}
-				line = br.readLine();
+				break;
+			}else
+			{
+				mem[i] = line ;
 			}
+			line = br.readLine();
 		}
 		
 		mem =sortedbyattribute(mem,att,mem.length);
@@ -81,7 +77,7 @@ public class SMJ {
 		System.out.println(filepath+iteration+"sublist.csv");
 		for(int i=0;i<mem.length;i++){
 			System.out.println(mem[i]);
-			if (mem[i]==null){break;}
+			/*if (mem[i]==null){break;}*/
 			ReadingWritingFile.Writethis(mem[i]+"\n",filepath+iteration+"sublist.csv");
 		}
 		
