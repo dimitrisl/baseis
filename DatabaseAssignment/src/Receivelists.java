@@ -1,5 +1,4 @@
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -23,7 +22,7 @@ public class Receivelists {
 				String []compare;
 				String insert = "";
 				Boolean state = true;
-				String worst_case;
+				//String worst_case;
 				int counter = 0;
 				while (state)
 				{

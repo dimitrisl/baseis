@@ -49,8 +49,4 @@ public class MergeTmpFiles {
 		fr.close();
 		sr.close();
 	}
-	public static void main(String[] args) throws IOException
-	{
-		mergeFiles("C.csv", "D.csv", 0,3, "output.csv");
-	}
 }

@@ -1,4 +1,5 @@
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -7,11 +8,11 @@ public class SMJ {
 	
 	public static void main(String[] args) throws IOException
 	{
-		smjjoinstart("C.csv","D.csv",200,0,3);
+		smjjoinstart("C.csv","D.csv",200,0,3,"output.csv");
 	}
 	
 	
-	public static void smjjoinstart(String f1, String f2, int memsize, int attribute1, int attribute2) throws IOException{
+	public static void smjjoinstart(String f1, String f2, int memsize, int attribute1, int attribute2,String outputFile) throws IOException{
 		int numberoflines1 = ReadingWritingFile.readFirstLineofFile(f1);
 		int numberoflines2 = ReadingWritingFile.readFirstLineofFile(f2);
 		String []memory = new String[memsize];
@@ -31,14 +32,24 @@ public class SMJ {
 		sr.close();
 		
 		Receivelists.reclists(f1, i-1, attribute1, memsize);
+		//delete sublists
+		for(int m=0;m<i;m++){
+			new File(f1+m+"sublist.csv").delete();
+		}
+		
 		Receivelists.reclists(f2, j-1, attribute2, memsize);
+		//delete sublists
+		for(int m=0;m<j;m++){
+			new File(f2+m+"sublist.csv").delete();
+		}
+		
+		MergeTmpFiles.mergeFiles(f1, f2, attribute1, attribute2, outputFile);
+		//delete sorted files
+		new File("sorted"+f1+".csv").delete();
+		new File("sorted"+f2+".csv").delete();
 		
 	}
 	
-	public static void OutputTuples(int i, int j, int numberoflines1, int numberoflines2){
-		
-	}
-
 	public static void createSublist(String filepath,BufferedReader br,String []mem,int attr,int iteration) throws IOException{
 		
 		String line;
