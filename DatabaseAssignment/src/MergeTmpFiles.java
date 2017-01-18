@@ -19,6 +19,7 @@ public class MergeTmpFiles {
 			lines1=fr.readLine();
 			for(int j=0;j<numOfLines2;j++){
 				lines2=sr.readLine();
+				
 				int tmp1=Integer.parseInt(lines1.split(",")[att1]);
 				int tmp2=Integer.parseInt(lines2.split(",")[att2]);
 				if(tmp1==tmp2){
@@ -27,6 +28,8 @@ public class MergeTmpFiles {
 					ReadingWritingFile.Writethis(lines1+","+lines2+"\n",outputFile);
 				}
 			}
+			sr.close();
+			sr = new BufferedReader(new FileReader("sorted"+file2+".csv"));
 		}
 		fr.close();
 		sr.close();
@@ -35,5 +38,4 @@ public class MergeTmpFiles {
 	{
 		mergeFiles("C.csv", "D.csv", 0,3, "output.csv");
 	}
-
 }
