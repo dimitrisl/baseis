@@ -79,11 +79,4 @@ public class Receivelists {
 		min[2] = ""+max; // maximum value of the attribute
 	    return min;
 	} 
-
-
-
-	public static void main(String[] args) throws IOException
-	{
-			reclists("B.csv", 30, 2, 200);
-	}
 }
