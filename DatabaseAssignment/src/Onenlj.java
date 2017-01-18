@@ -4,11 +4,9 @@ import java.io.IOException;
 
 public class Onenlj {
 			
-	public static void joinstart(String file1,String file2,int memsize,int attribute1,int attribute2,String outputFile)throws IOException
+	public static void joinstart(String file1,String file2,int memsize,int attribute1,int attribute2,int numberoflines1,int numberoflines2,String outputFile)throws IOException
 	{
 		
-		int numberoflines1 = ReadingWritingFile.readFirstLineofFile(file1);
-		int numberoflines2 = ReadingWritingFile.readFirstLineofFile(file2);
 		String lines1 = "";
 		String lines2 = "";
 		int []mem = new int[memsize];

@@ -43,7 +43,10 @@ public class Receivelists {
 							break;
 						}
 				}//endwhile
-		
+				for (int i= 0 ;i<numfiles;i++)
+				{
+					buffers[i].close();
+				}
 			
 		}//endif
 	}

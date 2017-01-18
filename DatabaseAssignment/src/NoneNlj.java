@@ -4,17 +4,13 @@ import java.io.IOException;
 
 public class NoneNlj {
 	
-	public static void joinstart( String filepath1, String filepath2, int memsize,int attributesF1, int attributesF2,String outputFile) throws IOException{
+	public static void joinstart( String filepath1, String filepath2, int memsize,int attributesF1, int attributesF2,int numOfLines1,int numOfLines2,String outputFile) throws IOException{
 		
-		int numOfLines1;
-		int numOfLines2;
 		int[] memory=new int[memsize]; //allocates memory
 		String[] memlines=new String[memsize];
 		
 		String lines1="";
 		String lines2="";
-		numOfLines1=ReadingWritingFile.readFirstLineofFile(filepath1);
-		numOfLines2=ReadingWritingFile.readFirstLineofFile(filepath2);
 		
 		FileReader fr1=new FileReader(filepath1);
 		FileReader fr2=new FileReader(filepath2);
@@ -28,9 +24,9 @@ public class NoneNlj {
 		while ((lines1 = fr.readLine()) != null)
 		{
 
-			for (int i=0;i<numOfLines1/(memsize-1);i++) //poses fores xwraei to M ston pinaka me tis ligoteres eggrafes
+			for (int i=0;i<numOfLines1/(memsize-1);i++) //how many times m fits in the number of lines
 			{
-				//readFile1 and put it in memory
+				//read File1 and put it in memory
 				for(int k=0;k<memsize-1;k++){
 					lines1=fr.readLine();
 					if(lines1==null){

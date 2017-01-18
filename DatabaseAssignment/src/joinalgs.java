@@ -2,7 +2,7 @@ import java.io.IOException;
 
 public class joinalgs {
 	
-	public static void main(String[] args)
+	public static void main(String[] args) throws IOException
 	{
 		
 		/*
@@ -20,24 +20,39 @@ public class joinalgs {
 //		String f2 = args[5]; // second csv
 //		int a2 = Integer.parseInt(args[7]);
 //		String j = args[9];
-		int memory = Integer.parseInt(args[11]);
+//		int memory = Integer.parseInt(args[11]);
 //		String t = args[13];
-		String outputFile = args[15];
+//		String outputFile = args[15];
 //		
+		String file1="D.csv";
+		int attribute1=3;
+		String file2="C.csv";
+		int attribute2=0;
 		String j="NLJ";
+		int memory=200;
+		String outputFile="";
+		
 		if (j=="NLJ")
 		{
-			// filepath1,filepath2,memory size,collumnf1,collumnf2
-			//create decision method to choose case for nlj
-			//Nonenlj fits -->joinstart
-			String file1="A.csv";
-			String file2="B.csv";
-			String decision = decidenlj(file1,file2,memory);
+			
+			int numberoflines1=ReadingWritingFile.readFirstLineofFile(file1);
+			int numberoflines2=ReadingWritingFile.readFirstLineofFile(file2);
+			
+			/*Because we want the file with the less lines to be in the outer loop 
+			we should swap file1-file2,numberoflines1-numberoflines2 and attribute1-attribute2
+			if numberoflines1>numberoflines2*/
+			if(numberoflines1>numberoflines2){
+				file1=Tools.swapString(file2,file2=file1);
+				attribute1=Tools.swapInt(attribute2, attribute2=attribute1);
+				numberoflines1=Tools.swapInt(numberoflines2, numberoflines2=numberoflines1);
+			}
+			
+			String decision =Tools.decidenlj(numberoflines1,numberoflines2,memory);
 			
 			if (decision.equals("None"))
 			{
 				try {
-					NoneNlj.joinstart(file1, file2, 100, 0, 1,outputFile);
+					NoneNlj.joinstart(file1,file2,memory,attribute1,attribute2,numberoflines1,numberoflines2,outputFile);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -45,7 +60,7 @@ public class joinalgs {
 			}else if (decision.equals("One"))
 			{
 				try {
-					Onenlj.joinstart(file1, file2, 100, 0, 1,outputFile);
+					Onenlj.joinstart(file1,file2,memory,attribute1,attribute2,numberoflines1,numberoflines2,outputFile);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -53,42 +68,18 @@ public class joinalgs {
 			}else
 			{
 				try {
-					Bothnlj.joinstart(file1, file2, 0, 1,outputFile);
+					Bothnlj.joinstart(file1,file2,attribute1,attribute2,outputFile);
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
-			
-			//Onenlj fits -->joinstart
-			//both fit Bothnlj-->joinstart
+		
 		}else if (j=="MSJ")
 		{
-			//create decision method to choose case for smj
+			SMJ.smjjoinstart(file1, file2, memory, attribute1, attribute2, outputFile);
 		}
-
-		
-	}
 	
-	public static String decidenlj(String File1,String File2,int memsize)
-	{
-		String decision = "";
-		int numOfLines1=ReadingWritingFile.readFirstLineofFile(File1);
-		int numOfLines2=ReadingWritingFile.readFirstLineofFile(File2);
-		
-		if ((numOfLines1>memsize) && (numOfLines2>memsize))
-		{
-			decision = "None";
-		}
-		else if ((numOfLines1<=memsize) ^ (numOfLines2<=memsize))
-		{
-			decision = "One";
-		}
-		else if (numOfLines1+numOfLines2<=memsize)
-		{
-			decision = "Both";
-		}
-		return decision; //poia apo tis 3 periptwseis nlj
 	}
 
 }
