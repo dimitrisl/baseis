@@ -50,9 +50,21 @@ public class NoneNlj {
 					memory[memsize-1]=Integer.parseInt(lines2.split(",")[attributesF2]);//change in every iteration only the last record in the memory
 					for(int l=0;l<memsize-1;l++){
 						if(memory[l]==memory[memsize-1]){
-							String temp=memlines[l].split(",")[attributesF1];
-							memlines[l]=memlines[l].replaceAll(temp+",","");
-							ReadingWritingFile.Writethis(memlines[l]+","+memlines[memsize-1]+"\n",outputFile);
+							String concatenate ="";
+							String both = memlines[l]+","+memlines[memsize-1];
+							String []holder = both.split(",");
+							for (int counter=0;counter<holder.length;counter++)
+							{
+								if (counter != attributesF1)
+								{
+									concatenate += holder[counter]+",";
+								}else if(counter == holder.length-1)
+								{
+									concatenate +=holder[counter];
+								}
+							}
+
+							ReadingWritingFile.Writethis(concatenate+"\n",outputFile);
 						}
 							
 					}

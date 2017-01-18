@@ -26,9 +26,21 @@ public class MergeTmpFiles {
 					break;
 				}
 				if(tmp1==tmp2){
-					String temp=lines1.split(",")[att1];
-					lines1=lines1.replaceAll(temp+",","");
-					ReadingWritingFile.Writethis(lines1+","+lines2+"\n",outputFile);
+					String concatenate ="";
+					String both = lines1+","+lines2;
+					String []holder = both.split(",");
+					for (int counter=0;counter<holder.length;counter++)
+					{
+						if (counter != att1)
+						{
+							concatenate += holder[counter]+",";
+						}else if(counter == holder.length-1)
+						{
+							concatenate +=holder[counter];
+						}
+					}
+
+					ReadingWritingFile.Writethis(concatenate+"\n",outputFile);
 				}
 			}
 			sr.close();
