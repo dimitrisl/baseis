@@ -15,24 +15,25 @@ public class joinalgs {
 7			-t <temporary_dir_path>: a directory to use for reading/writing temporary files
 8			-o <output_file_path>: the file to store the result of the join 
 		 * */		
-//		String f1 = args[1]; // first csv
-//		int a1 = Integer.parseInt(args[3]);
-//		String f2 = args[5]; // second csv
-//		int a2 = Integer.parseInt(args[7]);
-//		String j = args[9];
+//		String file1 = args[1]; // first csv
+//		int attribute1 = Integer.parseInt(args[3]);
+//		String file2 = args[5]; // second csv
+//		int atribute2 = Integer.parseInt(args[7]);
+//		String algorithm = args[9];
 //		int memory = Integer.parseInt(args[11]);
-//		String t = args[13];
+//		String tempFilesDir = args[13];
 //		String outputFile = args[15];
 //		
 		String file1="D.csv";
 		int attribute1=3;
 		String file2="C.csv";
 		int attribute2=0;
-		String j="NLJ";
+		String algorithm="MSJ";
 		int memory=200;
-		String outputFile="";
+		String outputFile="output.csv";
+		String tempFilesDir="tempFiles\\";
 		
-		if (j=="NLJ")
+		if (algorithm=="NLJ")
 		{
 			
 			int numberoflines1=ReadingWritingFile.readFirstLineofFile(file1);
@@ -75,9 +76,9 @@ public class joinalgs {
 				}
 			}
 		
-		}else if (j=="MSJ")
+		}else if (algorithm=="MSJ")
 		{
-			SMJ.smjjoinstart(file1, file2, memory, attribute1, attribute2, outputFile);
+			SMJ.smjjoinstart(file1, file2, memory, attribute1, attribute2, outputFile,tempFilesDir);
 		}
 	
 	}

@@ -5,8 +5,9 @@ import java.io.IOException;
 public class Receivelists {
 		
 
-	public static void reclists(String file,int numfiles,int attribute,int memorysize) throws IOException
+	public static void reclists(String file,int numfiles,int attribute,int memorysize,String tempFilesDir) throws IOException
 	{
+		
 			if (numfiles<=memorysize)
 			{
 			BufferedReader[] buffers = new BufferedReader[numfiles];
@@ -14,7 +15,7 @@ public class Receivelists {
 
 				for (int i= 0 ;i<numfiles;i++)
 				{
-					buffers[i]=new BufferedReader(new FileReader(file+i+"sublist.csv"));
+					buffers[i]=new BufferedReader(new FileReader(tempFilesDir+"\\"+file+i+"sublist.csv"));
 					rows[i] = buffers[i].readLine();
 				}
 
@@ -28,7 +29,7 @@ public class Receivelists {
 				{
 						compare = findmin(rows,attribute);
 						min_loc = Integer.parseInt(compare[1]);
-						ReadingWritingFile.Writethis(rows[min_loc]+"\n","sorted"+file+".csv");
+						ReadingWritingFile.Writethis(rows[min_loc]+"\n",tempFilesDir+"\\"+"sorted"+file+".csv");
 						if ((insert = buffers[min_loc].readLine()) != null){
 							rows[min_loc] =insert;
 						}else

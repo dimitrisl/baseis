@@ -4,13 +4,13 @@ import java.io.IOException;
 
 public class MergeTmpFiles {
 	
-	public static void mergeFiles(String file1,String file2,int att1,int att2,String outputFile) throws IOException  {
+	public static void mergeFiles(String file1,String file2,int att1,int att2,String outputFile,String tempFilesDir) throws IOException  {
 		
 		int numOfLines1=ReadingWritingFile.readFirstLineofFile(file1);
 		int numOfLines2=ReadingWritingFile.readFirstLineofFile(file2);
 		
-		BufferedReader fr=new BufferedReader(new FileReader("sorted"+file1+".csv"));
-		BufferedReader sr=new BufferedReader(new FileReader("sorted"+file2+".csv"));
+		BufferedReader fr=new BufferedReader(new FileReader(tempFilesDir+"\\"+"sorted"+file1+".csv"));
+		BufferedReader sr=new BufferedReader(new FileReader(tempFilesDir+"\\"+"sorted"+file2+".csv"));
 		
 		String lines1="";
 		String lines2="";
@@ -44,7 +44,7 @@ public class MergeTmpFiles {
 				}
 			}
 			sr.close();
-			sr = new BufferedReader(new FileReader("sorted"+file2+".csv"));
+			sr = new BufferedReader(new FileReader(tempFilesDir+"\\"+"sorted"+file2+".csv"));
 		}
 		fr.close();
 		sr.close();
