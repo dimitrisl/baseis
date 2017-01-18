@@ -22,6 +22,9 @@ public class MergeTmpFiles {
 				
 				int tmp1=Integer.parseInt(lines1.split(",")[att1]);
 				int tmp2=Integer.parseInt(lines2.split(",")[att2]);
+				if(tmp1<tmp2){
+					break;
+				}
 				if(tmp1==tmp2){
 					String temp=lines1.split(",")[att1];
 					lines1=lines1.replaceAll(temp+",","");
