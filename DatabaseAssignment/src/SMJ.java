@@ -7,7 +7,7 @@ public class SMJ {
 	
 	public static void main(String[] args) throws IOException
 	{
-		smjjoinstart("A.csv","B.csv",200,1,2);
+		smjjoinstart("C.csv","D.csv",200,0,3);
 	}
 	
 	
@@ -15,20 +15,24 @@ public class SMJ {
 		int numberoflines1 = ReadingWritingFile.readFirstLineofFile(f1);
 		int numberoflines2 = ReadingWritingFile.readFirstLineofFile(f2);
 		String []memory = new String[memsize];
+		int i,j;//number of sublists
 		
 		BufferedReader fr=new BufferedReader(new FileReader(f1));
 		fr.readLine();
-		for(int i=0;i<=numberoflines1/memsize;i++){
-			System.out.println(numberoflines1/memsize);
+		for(i=0;i<=numberoflines1/memsize;i++){
 			createSublist(f1,fr,memory,attribute1,i);
 		}
 		fr.close();
 		BufferedReader sr=new BufferedReader(new FileReader(f2));
 		sr.readLine();
-		for(int j=0;j<=numberoflines2/memsize;j++){
+		for(j=0;j<=numberoflines2/memsize;j++){
 			createSublist(f2,sr,memory,attribute2,j);
 		}
 		sr.close();
+		
+		Receivelists.reclists(f1, i-1, attribute1, memsize);
+		Receivelists.reclists(f2, j-1, attribute2, memsize);
+		
 	}
 	
 	public static void OutputTuples(int i, int j, int numberoflines1, int numberoflines2){
