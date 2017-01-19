@@ -1,4 +1,5 @@
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -49,8 +50,49 @@ public class Receivelists {
 					buffers[i].close();
 				}
 			
-		}//endif
-	}
+		}else {
+			BufferedReader[] buffers = new BufferedReader[numfiles];
+			String []rows = new String[numfiles];
+
+				for (int i= 0 ;i<numfiles;i++)
+				{
+					buffers[i]=new BufferedReader(new FileReader(tempFilesDir+"\\"+file+i+"sublist.csv"));
+					rows[i] = buffers[i].readLine();
+				}
+
+				int min_loc;
+				String []compare;
+				String insert = "";
+				Boolean state = true;
+				//String worst_case;
+				int counter = 0;
+				while (state)
+				{
+						compare = findmin(rows,attribute);
+						min_loc = Integer.parseInt(compare[1]);
+						ReadingWritingFile.Writethis(rows[min_loc]+"\n",tempFilesDir+"\\"+"sorted"+file+".csv");
+						if ((insert = buffers[min_loc].readLine()) != null){
+							rows[min_loc] =insert;
+						}else
+							{
+								//worst_case = compare[2]+","+compare[2]+","+compare[2]+","+compare[2];
+								rows[min_loc] = "empty";	
+								counter++;
+							}
+						if (counter == buffers.length) 
+						{
+							state = false;
+							break;
+						}
+				}//endwhile
+				for (int i= 0 ;i<numfiles;i++)
+				{
+					buffers[i].close();
+				}
+			}
+		}
+	
+
 
 	public static String[] findmin(String[] arr,int attr)
 	{
