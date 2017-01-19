@@ -33,20 +33,21 @@ public class joinalgs {
 		String outputFile="output.csv";
 		String tempFilesDir="tempFiles\\";
 		
+		int numberoflines1=ReadingWritingFile.readFirstLineofFile(file1);
+		int numberoflines2=ReadingWritingFile.readFirstLineofFile(file2);
+		
+		/*Because we want the file with the less lines to be in the outer loop 
+		we should swap file1-file2,numberoflines1-numberoflines2 and attribute1-attribute2
+		if numberoflines1>numberoflines2*/
+		if(numberoflines1>numberoflines2){
+			file1=Tools.swapString(file2,file2=file1);
+			attribute1=Tools.swapInt(attribute2, attribute2=attribute1);
+			numberoflines1=Tools.swapInt(numberoflines2, numberoflines2=numberoflines1);
+		}
+		
 		if (algorithm=="NLJ")
 		{
-			
-			int numberoflines1=ReadingWritingFile.readFirstLineofFile(file1);
-			int numberoflines2=ReadingWritingFile.readFirstLineofFile(file2);
-			
-			/*Because we want the file with the less lines to be in the outer loop 
-			we should swap file1-file2,numberoflines1-numberoflines2 and attribute1-attribute2
-			if numberoflines1>numberoflines2*/
-			if(numberoflines1>numberoflines2){
-				file1=Tools.swapString(file2,file2=file1);
-				attribute1=Tools.swapInt(attribute2, attribute2=attribute1);
-				numberoflines1=Tools.swapInt(numberoflines2, numberoflines2=numberoflines1);
-			}
+		
 			
 			String decision =Tools.decidenlj(numberoflines1,numberoflines2,memory);
 			
