@@ -26,7 +26,7 @@ public class joinalgs {
 //		
 		String file1="D.csv";
 		int attribute1=3;
-		String file2="C.csv";
+		String file2="B.csv";
 		int attribute2=0;
 		String algorithm="MSJ";
 		int memory=200;

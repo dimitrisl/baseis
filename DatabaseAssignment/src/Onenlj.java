@@ -20,8 +20,10 @@ public class Onenlj {
 			for(int k=0; k<numberoflines1; k++){
 				
 				lines1=fr.readLine();
+				System.out.println(lines1);
 				mem[k]=Integer.parseInt(lines1.split(",")[attribute1]);
 			}
+				fr.close();;
 				//restart reading file from the beginning
 				fr = new BufferedReader(new FileReader(file1));
 				fr.readLine();
@@ -62,8 +64,8 @@ public class Onenlj {
 						}
 					}				
 				}
-			    /*fr.close();
-				sr.close();*/
+			    fr.close();
+				sr.close();
 			}
 			
 	}
